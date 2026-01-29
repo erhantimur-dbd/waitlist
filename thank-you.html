@@ -1,0 +1,65 @@
+<!-- thank-you.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're on the List | Digital by Default</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0a0f1f, #111a33);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+    .container { max-width: 600px; }
+    h1 { font-size: 36px; margin-bottom: 15px; }
+    p { font-size: 18px; color: #cbd5e1; line-height: 1.6; margin-bottom: 25px; }
+    .highlight {
+      background: linear-gradient(90deg, #00c6ff, #7b2cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+    }
+    .button {
+      display: inline-block;
+      padding: 14px 26px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      background: linear-gradient(90deg, #00c6ff, #7b2cff);
+      color: white;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    .small { margin-top: 20px; font-size: 14px; color: #94a3b8; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>You're on the list 🚀</h1>
+
+    <p>
+      Thanks for joining <span class="highlight">Digital by Default</span>.<br>
+      We help businesses deploy AI systems that remove manual work and scale operations without hiring.
+    </p>
+
+    <p>If automation is a priority right now, you can skip the queue and speak with us directly.</p>
+
+    <a href="https://calendly.com/hello-digitalbydefault/30min" class="button">Book an AI Strategy Call</a>
+
+    <div class="small">Otherwise, we’ll be in touch soon with early access.</div>
+  </div>
+</body>
+</html>
