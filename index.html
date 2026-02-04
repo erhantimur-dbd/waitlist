@@ -1,99 +1,2066 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="google-site-verification" content="GS-nXkYd8SJHZL8VxMx-pc9xDOMfV6jZMOmrnmhOdKg" />
+   <meta name="google-site-verification" content="GS-nXkYd8SJHZL8VxMx-pc9xDOMfV6jZMOmrnmhOdKg" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Digital by Default | AI Waiting List</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Digital by Default — Powered by Intelligence</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #0a0f1f, #111a33);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      padding: 20px;
+    /* Mobile text-only summaries (hide tile cards on small screens) */
+    .mobile-only { display: none; }
+    .tile-grid { display: grid; }
+
+    @media (max-width: 768px) {
+      .mobile-only { display: block; }
+      .tile-grid { display: none !important; }
+
+      .mobile-summary {
+        margin-top: 14px;
+        padding: 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.10);
+        background: rgba(255,255,255,0.04);
+      }
+
+      .mobile-summary p { color: rgba(255,255,255,0.82); font-size: 15px; }
+
+      .mobile-summary ul {
+        margin-top: 10px;
+        padding-left: 18px;
+        color: rgba(255,255,255,0.80);
+        font-size: 15px;
+      }
+
+      .mobile-summary li { margin: 8px 0; }
+
+      .mobile-summary strong { color: rgba(255,255,255,0.94); }
+
+      /* Allow hero next-steps tiles on mobile (stacked) */
+      .cta-steps { display: grid !important; grid-template-columns: 1fr !important; }
+      .cta-steps .card { padding: 18px !important; }
+
+      /* Fix: prevent overlap in Reasons section caused by negative margins */
+      #reasons .reasons-lede { margin-top: 14px !important; }
     }
-    .container { max-width: 520px; width: 100%; text-align: center; }
-    h1 { font-size: 34px; font-weight: 700; margin-bottom: 15px; }
-    .tagline {
-      font-size: 18px;
-      color: #cbd5e1;
-      margin-bottom: 25px;
+
+    :root {
+      --bg-dark: #0b1c2d;
+      --text-light: #ffffff;
+      --text-muted: rgba(255,255,255,0.75);
+      --ai-red: #ff6b6b;
+      --ai-amber: #feca57;
+      --ai-mint: #1dd1a1;
+      --ai-blue: #54a0ff;
+      --ai-indigo: #5f27cd;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(1400px 700px at -10% 10%, rgba(84,160,255,0.35), transparent 60%),
+        radial-gradient(900px 600px at 10% 30%, rgba(95,39,205,0.30), transparent 55%),
+        linear-gradient(180deg, #081624 0%, #0b1c2d 55%, #081624 100%);
+      color: var(--text-light);
       line-height: 1.6;
     }
-    .highlight {
-      background: linear-gradient(90deg, #00c6ff, #7b2cff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 600;
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: linear-gradient(180deg, rgba(8,22,36,0.85), rgba(8,22,36,0));
+      backdrop-filter: blur(6px);
     }
-    form {
-      background: rgba(255,255,255,0.05);
-      padding: 25px;
-      border-radius: 12px;
-      backdrop-filter: blur(10px);
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .logo-lockup {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 4px;
+      line-height: 1.05;
+      min-width: 0;
     }
-    input {
-      padding: 14px;
-      border-radius: 8px;
-      border: none;
-      font-size: 15px;
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+      white-space: nowrap;
     }
-    button {
-      padding: 14px;
-      border-radius: 8px;
-      border: none;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      background: linear-gradient(90deg, #00c6ff, #7b2cff);
-      color: white;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
-    .footer {
-      margin-top: 18px;
+
+    .logo-sub {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-size: 12px;
-      color: #94a3b8;
+      font-weight: 650;
+      color: rgba(255,255,255,0.72);
+      white-space: nowrap;
     }
+
+    .logo-powered { color: rgba(255,255,255,0.70); font-weight: 600; }
+
+    .logo-intel {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 10px;
+      border-radius: 999px;
+      color: rgba(255,255,255,0.92);
+      font-weight: 800;
+      letter-spacing: 0.15px;
+      background: rgba(8,22,36,0.35);
+      border: 1px solid rgba(255,255,255,0.14);
+      overflow: hidden;
+    }
+
+    /*
+      Digital by Default Intelligence — Stamp of Approval
+      - Encapsulated pill shape = certification seal
+      - Animated multi-colour border = living intelligence / continuous learning
+      - Dark inner fill = contrast + premium feel
+    */
+
+    .logo-intel::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(90deg, var(--ai-red), var(--ai-amber), var(--ai-mint), var(--ai-blue), var(--ai-indigo));
+      background-size: 300% 100%;
+      animation: intelligence-flow 10s ease infinite;
+      border-radius: 999px;
+      z-index: 0;
+    }
+
+    .logo-intel::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      background: rgba(8,22,36,0.92);
+      border-radius: 999px;
+      z-index: 1;
+    }
+
+    .logo-intel > span { position: relative; z-index: 2; }
+
+    @media (max-width: 900px) {
+      .site-header .logo-sub { display: inline-flex; }
+      .mobile-drawer .logo-sub { display: inline-flex; }
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .nav-item {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 8px;
+      min-width: 180px;
+      background: rgba(8,22,36,0.95);
+      border-radius: 14px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.55);
+      padding: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(6px);
+      transition: opacity 160ms ease, transform 160ms ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .dropdown a {
+      line-height: 1.25;
+      display: block;
+      padding: 10px 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      border-radius: 10px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown a:hover {
+      background: rgba(255,255,255,0.08);
+      color: #ffffff;
+    }
+
+    .nav-item:hover .dropdown {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.78);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      transition: background 160ms ease, color 160ms ease;
+      white-space: nowrap;
+    }
+
+    /* HARD STOP: remove underline on ALL button-like links in all states */
+    a.btn,
+    a.btn:link,
+    a.btn:visited,
+    a.btn:hover,
+    a.btn:active,
+    a.btn:focus {
+      text-decoration: none !important;
+      border-bottom: none !important;
+    }
+
+    .nav a:hover {
+      color: rgba(255,255,255,0.95);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .hamburger {
+      display: none;
+      min-width: 64px;
+      height: 42px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.92);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .menu-text { font-size: 14px; }
+
+    .hamburger:hover { background: rgba(255,255,255,0.10); }
+
+    /* Mobile nav drawer */
+    .mobile-nav-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1500;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 14px;
+    }
+
+    .mobile-nav-overlay.is-open { display: flex; }
+
+    .mobile-drawer {
+      width: min(420px, 92vw);
+      max-height: calc(100vh - 28px);
+      height: auto;
+      margin-top: 72px;
+      background: rgba(8,22,36,0.94);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.65);
+      padding: 18px;
+      overflow: auto;
+      transform: translateY(10px) scale(0.98);
+      opacity: 0;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+
+    .mobile-nav-overlay.is-open .mobile-drawer {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    .mobile-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      margin-bottom: 14px;
+    }
+
+    .mobile-drawer-title {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .mobile-close {
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.90);
+      border-radius: 12px;
+      padding: 10px 12px;
+      cursor: pointer;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .mobile-links a {
+      -webkit-tap-highlight-color: transparent;
+      display: block;
+      padding: 12px 12px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: rgba(255,255,255,0.86);
+      font-weight: 650;
+      letter-spacing: 0.1px;
+    }
+
+    .mobile-links a:hover { background: rgba(255,255,255,0.08); }
+
+    .mobile-accordion {
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+
+    .mobile-acc-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 12px;
+      background: transparent;
+      border: none;
+      color: rgba(255,255,255,0.90);
+      font-weight: 750;
+      letter-spacing: 0.1px;
+      cursor: pointer;
+    }
+
+    .mobile-acc-trigger:hover { background: rgba(255,255,255,0.06); }
+
+    .mobile-acc-icon {
+      display: inline-flex;
+      width: 26px;
+      height: 26px;
+      border-radius: 10px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      transform: rotate(0deg);
+      transition: transform 180ms ease;
+    }
+
+    .mobile-accordion.is-collapsed .mobile-acc-icon { transform: rotate(-90deg); }
+
+    .mobile-acc-panel {
+      padding: 4px;
+      display: grid;
+      gap: 2px;
+    }
+
+    .mobile-accordion.is-collapsed .mobile-acc-panel { display: none; }
+
+    /* Sticky mobile CTA bar */
+    .sticky-cta {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1199;
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+      background: linear-gradient(180deg, rgba(8,22,36,0.00), rgba(8,22,36,0.88) 18%, rgba(8,22,36,0.96));
+      border-top: 1px solid rgba(255,255,255,0.10);
+      backdrop-filter: blur(10px);
+      display: none;
+    }
+
+    .sticky-cta-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sticky-cta .btn {
+      flex: 1;
+      min-width: 0;
+      padding: 12px 14px;
+    }
+
+    .sticky-chat {
+      flex: 0 0 auto;
+      width: 52px;
+      height: 46px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.92);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    .sticky-chat:hover { background: rgba(255,255,255,0.10); }
+
+    @media (max-width: 768px) {
+      .sticky-cta { display: block; }
+      body { padding-bottom: 78px; }
+    }
+
+    body.nav-open .sticky-cta,
+    body.modal-open .sticky-cta,
+    body.chat-open .sticky-cta {
+      display: none !important;
+    }
+
+    .mobile-section-label {
+      margin-top: 14px;
+      margin-bottom: 6px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.62);
+      font-weight: 700;
+      letter-spacing: 0.25px;
+      text-transform: uppercase;
+    }
+
+    .mobile-cta {
+      margin-top: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .mobile-cta a {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* Mobile menu: make Strategy Call text black for contrast */
+    .mobile-cta .btn-strategy {
+      color: #000000 !important;
+    }
+
+    /* Utility: force fully curved corners (pill) */
+    .btn-pill { border-radius: 999px !important; }
+
+    .btn-partner {
+      background: transparent;
+      color: rgba(255,255,255,0.92);
+      border: 1px solid rgba(255,255,255,0.35);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+      backdrop-filter: blur(6px);
+      opacity: 0.95;
+    }
+
+    .btn-partner:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.55);
+    }
+
+    @media (max-width: 900px) {
+      .hamburger { display: inline-flex; }
+      .nav { display: none; }
+    }
+
+    .btn.btn-header {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      min-width: unset;
+    }
+
+    .site-header.is-scrolled {
+      background: rgba(8,22,36,0.92);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 56px 24px;
+    }
+
+    /* HERO */
+    .hero {
+      padding-top: 96px;
+      padding-bottom: 96px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      max-width: 980px;
+      width: 100%;
+    }
+
+    .hero p {
+      margin-top: 20px;
+      font-size: 20px;
+      color: var(--text-muted);
+      max-width: 640px;
+    }
+
+    /* Method quote */
+    .method-quote {
+      margin-top: 18px;
+      max-width: 860px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .method-quote::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--ai-red), var(--ai-amber), var(--ai-mint), var(--ai-blue), var(--ai-indigo));
+      background-size: 100% 300%;
+      animation: quoteFlow 14s ease infinite;
+      opacity: 0.95;
+    }
+
+    .method-quote-text {
+      font-size: 14px;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.86);
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      font-style: italic;
+    }
+
+    .method-quote-author {
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.60);
+      font-weight: 700;
+      letter-spacing: 0.12px;
+      text-transform: uppercase;
+    }
+
+    /* Hero divider bar */
+    .hero-divider {
+      margin-top: 18px;
+      margin-bottom: 8px;
+      width: 140px;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--ai-red), var(--ai-amber), var(--ai-mint), var(--ai-blue), var(--ai-indigo));
+      background-size: 300% 100%;
+      animation: intelligence-flow 10s ease infinite;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    }
+
+    .hero-powered {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pb-text {
+      font-size: 15px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.90);
+    }
+
+    .pb-intelligence {
+      font-size: 15px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--ai-red), var(--ai-amber), var(--ai-mint), var(--ai-blue), var(--ai-indigo));
+      background-size: 300% 100%;
+      color: #000;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.18), 0 8px 24px rgba(0,0,0,0.30);
+      animation: intelligence-flow 8s ease infinite;
+    }
+
+    @keyframes intelligence-flow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes quoteFlow {
+      0% { background-position: 50% 0%; }
+      50% { background-position: 50% 100%; }
+      100% { background-position: 50% 0%; }
+    }
+
+    /* Footer-specific polish */
+    .footer-powered {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-powered-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.72);
+    }
+
+    .footer-intel::before {
+      animation-duration: 18s;
+    }
+
+    @media (max-width: 640px) {
+      .footer-powered-text { font-size: 12px; }
+      .footer-intel { padding: 2px 8px; font-size: 12px; }
+    }
+
+    /* Rotating hero word */
+    .rotating-word {
+      letter-spacing: -0.02em;
+      margin-right: 0;
+      display: inline-block;
+      width: 8ch;
+      min-width: 8ch;
+      text-align: left;
+      position: relative;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--ai-red), var(--ai-amber), var(--ai-mint), var(--ai-blue), var(--ai-indigo));
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: intelligence-flow 14s ease infinite;
+    }
+
+    .rotating-word.is-animating {
+      animation:
+        intelligence-flow 14s ease infinite,
+        rotateWord var(--rotDur, 2400ms) ease-in-out 1;
+    }
+
+    .dash-tight {
+      margin-left: 1px;
+      margin-right: 3px;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    @keyframes rotateWord {
+      0%   { opacity: 1; transform: translateY(0);    filter: blur(0px); }
+      20%  { opacity: 1; transform: translateY(0);    filter: blur(0px); }
+      35%  { opacity: 0; transform: translateY(-8px); filter: blur(1px); }
+      50%  { opacity: 0; transform: translateY(8px);  filter: blur(1px); }
+      65%  { opacity: 1; transform: translateY(0);    filter: blur(0px); }
+      100% { opacity: 1; transform: translateY(0);    filter: blur(0px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rotating-word.is-animating { animation: none; }
+    }
+
+    .cta-group {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .cta-group .btn {
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-strategy {
+      background: linear-gradient(135deg, #FFD84D, #F4C430);
+      color: #1a1a1a;
+      box-shadow: 0 12px 32px rgba(244,196,48,0.45);
+      position: relative;
+      overflow: hidden;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 14px 34px;
+      min-width: 220px;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-strategy::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.45), transparent 45%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .btn-strategy:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 48px rgba(244,196,48,0.65);
+    }
+
+    section { padding: 64px 0; }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border-radius: 20px;
+      padding: 32px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 40px 24px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    /* OS expand tiles */
+    .os-acc {
+      background: rgba(255,255,255,0.04);
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+
+    .os-sum {
+      list-style: none;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 22px;
+    }
+
+    .os-sum::-webkit-details-marker { display: none; }
+
+    .os-left { min-width: 0; }
+
+    .os-title { font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
+    .os-sub { margin-top: 6px; font-size: 14px; color: rgba(255,255,255,0.76); }
+
+    .os-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      transition: transform 180ms ease;
+    }
+
+    details[open] .os-icon { transform: rotate(180deg); }
+
+    .os-body {
+      padding: 0 22px 22px;
+      color: rgba(255,255,255,0.80);
+    }
+
+    .os-body p { color: rgba(255,255,255,0.78); }
+
+    .os-body ul {
+      margin-top: 12px;
+      padding-left: 18px;
+      color: rgba(255,255,255,0.78);
+    }
+
+    .os-body li { margin: 8px 0; }
+
+    .os-cta {
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .os-cta .btn { margin-inline: auto; }
+
+    @media (max-width: 980px) {
+      .os-grid { grid-template-columns: 1fr !important; }
+      .os-icon { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .hero { padding-top: 80px; padding-bottom: 80px; }
+      .hero h1 { font-size: 40px; }
+      .header-inner { padding: 16px 18px; }
+      .btn.btn-header { display: none; }
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    /* Hero swipe phrase */
+    .headline-wrap {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      vertical-align: baseline;
+      padding-right: 2px;
+      margin-right: 2px;
+      max-width: 100%;
+      white-space: normal;
+      min-height: 2.6em;
+    }
+
+    .swap-word {
+      display: inline-block;
+      will-change: transform, opacity, filter;
+      transform: translateX(0);
+      opacity: 1;
+      filter: blur(0px);
+      transition: transform 620ms cubic-bezier(0.2, 0.9, 0.2, 1), opacity 620ms ease, filter 620ms ease;
+    }
+
+    .swap-word.is-out {
+      transform: translateX(-105%);
+      opacity: 0;
+      filter: blur(1px);
+    }
+
+    .swap-word.is-in {
+      transform: translateX(105%);
+      opacity: 0;
+      filter: blur(1px);
+    }
+
+    .hero-swap {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, var(--ai-red), var(--ai-amber), var(--ai-mint), var(--ai-blue), var(--ai-indigo));
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: intelligence-flow 14s ease infinite;
+    }
+
+    .hero-sub {
+      display: block;
+      font-size: 0.86em;
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+    }
+
+    /* Keep AI Automation variant stable on desktop */
+    .hero-sub--tight {
+      max-width: 30ch;
+      white-space: nowrap;
+      font-size: 0.83em;
+      letter-spacing: -0.02em;
+    }
+
+    @media (max-width: 900px) {
+      .hero-sub--tight {
+        max-width: none;
+        white-space: normal;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .headline-wrap { min-height: 0; }
+      .swap-word { white-space: normal; }
+      #about-digital-by-default .section-title {
+        font-size: 28px;
+        letter-spacing: -0.015em;
+        white-space: nowrap;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 34px; line-height: 1.06; }
+      .hero-os { font-size: 0.92em; white-space: nowrap; }
+      .hero-sub { font-size: 0.78em; line-height: 1.06; }
+    }
+
+    .nav-sub {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.65);
+      margin-top: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .swap-word { transition: none; }
+    }
+
+    @media (min-width: 1100px) {
+      .hero-sub { font-size: 0.9em; }
+    }
+
+    /* Highlight + underline for the word "Autonomous" */
+    .autonomous-highlight {
+      display: inline;
+      color: rgba(255,255,255,0.95);
+      text-decoration: underline;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 6px;
+    }
+
+    /* Contact tiles (cleaner, tighter layout) */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .contact-tile {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.30);
+    }
+
+    .contact-tile--hubspot {
+      background: rgba(255,255,255,0.92);
+      border-color: rgba(255,255,255,0.85);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.35);
+    }
+
+    .contact-tile--hubspot .contact-title {
+      color: rgba(0,0,0,0.92);
+    }
+
+    .contact-tile--hubspot .contact-desc,
+    .contact-tile--hubspot .contact-meta,
+    .contact-tile--hubspot .contact-meta strong,
+    .contact-tile--hubspot .mini,
+    .contact-tile--hubspot p,
+    .contact-tile--hubspot a {
+      color: rgba(0,0,0,0.75) !important;
+    }
+
+    .contact-tile--hubspot .contact-meta a {
+      color: rgba(0,0,0,0.86) !important;
+    }
+
+    .contact-tile--hubspot::before {
+      background: radial-gradient(700px 300px at 20% 0%, rgba(244,196,48,0.28), transparent 62%);
+      opacity: 0.9;
+    }
+
+    .contact-tile::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(700px 300px at 20% 0%, rgba(84,160,255,0.18), transparent 60%);
+      pointer-events: none;
+    }
+
+    .contact-tile-inner {
+      position: relative;
+      padding: 28px;
+    }
+
+    .hubspot-shell {
+      margin-top: 16px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+      padding: 16px;
+    }
+
+    .hubspot-shell .mini {
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.70);
+    }
+
+    .calendly-shell {
+      margin-top: 16px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+    }
+
+    /* Best-effort: make embedded HubSpot form match site */
+    /* HubSpot form text should be dark inside the white tile */
+    .contact-tile--hubspot .hubspot-shell label,
+    .contact-tile--hubspot .hubspot-shell .hs-form-field label,
+    .contact-tile--hubspot .hubspot-shell .hs-form-field span,
+    .contact-tile--hubspot .hubspot-shell .hs-error-msgs label,
+    .contact-tile--hubspot .hubspot-shell .hs-error-msg,
+    .contact-tile--hubspot .hubspot-shell .inputs-list,
+    .contact-tile--hubspot .hubspot-shell .legal-consent-container,
+    .contact-tile--hubspot .hubspot-shell .hs-richtext,
+    .contact-tile--hubspot .hubspot-shell .hs-form-required {
+      color: rgba(0,0,0,0.82) !important;
+    }
+
+    .contact-tile--hubspot .hubspot-shell .hs-input::placeholder,
+    .contact-tile--hubspot .hubspot-shell input::placeholder,
+    .contact-tile--hubspot .hubspot-shell textarea::placeholder {
+      color: rgba(0,0,0,0.42) !important;
+    }
+
+    .hubspot-shell .hs-form-field {
+      margin-bottom: 12px !important;
+    }
+
+    .hubspot-shell .hs-input::placeholder,
+    .hubspot-shell input::placeholder,
+    .hubspot-shell textarea::placeholder {
+      color: rgba(255,255,255,0.55) !important;
+    }
+
+    .hubspot-shell input,
+    .hubspot-shell textarea,
+    .hubspot-shell select {
+      width: 100% !important;
+      border-radius: 14px !important;
+      border: 1px solid rgba(255,255,255,0.14) !important;
+      background: rgba(8,22,36,0.75) !important;
+      color: rgba(255,255,255,0.92) !important;
+      padding: 12px 12px !important;
+      outline: none !important;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
+    }
+
+    .hubspot-shell input:focus,
+    .hubspot-shell textarea:focus,
+    .hubspot-shell select:focus {
+      border-color: rgba(244,196,48,0.65) !important;
+      box-shadow: 0 0 0 4px rgba(244,196,48,0.15) !important;
+    }
+
+    .hubspot-shell .hs-button {
+      border-radius: 999px !important;
+      padding: 12px 18px !important;
+      font-weight: 800 !important;
+      border: 0 !important;
+      cursor: pointer !important;
+      background: linear-gradient(135deg, #FFD84D, #F4C430) !important;
+      color: #111 !important;
+      width: 100% !important;
+      box-shadow: 0 12px 32px rgba(244,196,48,0.35) !important;
+    }
+
+    .hubspot-shell .hs-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 48px rgba(244,196,48,0.55) !important;
+    }
+
+    /* HubSpot skeleton loader */
+    .form-skeleton {
+      display: grid;
+      gap: 10px;
+      padding: 6px 2px 14px;
+    }
+
+    .sk-row,
+    .sk-btn {
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(90deg,
+        rgba(255,255,255,0.05),
+        rgba(255,255,255,0.10),
+        rgba(255,255,255,0.05));
+      background-size: 220% 100%;
+      animation: shimmer 1.2s ease-in-out infinite;
+    }
+
+    .sk-h { height: 14px; width: 60%; border-radius: 10px; }
+    .sk-row { height: 44px; }
+    .sk-row:nth-child(2) { } /* First name */
+    .sk-row:nth-child(3) { } /* Last name */
+    .sk-row:nth-child(4) { } /* Email */
+    .sk-row:nth-child(5) { } /* Phone */
+    .sk-row:nth-child(6) { height: 88px; } /* Message textarea */
+    .sk-btn { height: 46px; border-radius: 999px; }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .hubspot-shell.is-loaded .form-skeleton { display: none; }
+
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+  
+
+    /* ROI Calculator Section */
+    .roi-section { margin-top: 40px; }
+    .roi-wrap { display:flex; justify-content:center; }
+    .roi-calculator {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      max-width: 640px;
+      width:100%;
+      padding: 32px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      color: #1f2937;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    }
+    .roi-calculator h2 { font-size: 24px; font-weight: 700; margin-bottom: 6px; color:#111827; }
+    .roi-calculator .subtitle { font-size:14px; color:#6b7280; margin-bottom:26px; }
+    .input-group { margin-bottom:26px; }
+    .input-group label { display:block; font-size:14px; font-weight:600; color:#374151; margin-bottom:8px; }
+    .slider-container { display:flex; align-items:center; gap:14px; }
+    .slider-container input[type="range"] { flex:1; height:6px; border-radius:3px; background:#e5e7eb; appearance:none; }
+    .slider-container input[type="range"]::-webkit-slider-thumb { appearance:none; width:20px; height:20px; border-radius:50%; background:#2563eb; border:2px solid #fff; box-shadow:0 1px 3px rgba(0,0,0,.25); cursor:pointer; }
+    .value-display { min-width:84px; padding:8px 12px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px; font-size:14px; font-weight:700; text-align:center; }
+    .divider { height:1px; background:#e5e7eb; margin:28px 0; }
+    .results-header { font-size:13px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:#6b7280; margin-bottom:18px; }
+    .results-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .result-card { padding:18px; background:#f9fafb; border-radius:12px; border:1px solid #e5e7eb; }
+    .result-card.highlight { background:linear-gradient(135deg,#eff6ff 0%,#f0fdf4 100%); border-color:#bfdbfe; }
+    .result-card .label { font-size:12px; color:#6b7280; }
+    .result-card .value { font-size:22px; font-weight:800; color:#111827; }
+    .result-card.highlight .value { color:#059669; }
+    .result-card .subtext { font-size:11px; color:#9ca3af; margin-top:4px; }
+    .summary { margin-top:22px; padding:14px; background:#fefce8; border:1px solid #fde047; border-radius:10px; font-size:14px; color:#713f12; }
+    @media (max-width:640px){ .results-grid{grid-template-columns:1fr;} .slider-container{flex-direction:column;align-items:stretch;} }
   </style>
+
+  <script>
+    // === Paid Consult link (Calendly handles payment) ===
+    const PAID_CONSULT_URL = "https://calendly.com/hello-digitalbydefault/one-to-one-consult";
+    const FREE_AUDIT_FLAG_KEY = 'dbd_free_audit';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Wire Paid Consult CTAs to the same Calendly URL
+      if (typeof PAID_CONSULT_URL === 'string' && PAID_CONSULT_URL && PAID_CONSULT_URL.includes('calendly.com')) {
+        document.querySelectorAll('a[href="https://calendly.com/hello-digitalbydefault/one-to-one-consult"]').forEach(a => {
+          a.setAttribute('href', PAID_CONSULT_URL);
+          a.setAttribute('target', '_blank');
+          a.setAttribute('rel', 'noopener noreferrer');
+        });
+      }
+
+      // Header scroll polish
+      const header = document.querySelector('.site-header');
+      const onScroll = () => {
+        if (!header) return;
+        if (window.scrollY > 12) header.classList.add('is-scrolled');
+        else header.classList.remove('is-scrolled');
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // Smooth scroll for real in-page anchors (ignore href="#")
+      // Flag Free Audit clicks for HubSpot attribution
+      document.querySelectorAll('a[href="#contact"]').forEach(a => {
+        if (a.textContent && a.textContent.toLowerCase().includes('free audit')) {
+          a.addEventListener('click', () => {
+            try { localStorage.setItem(FREE_AUDIT_FLAG_KEY, '1'); } catch(e){}
+          });
+        }
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('href');
+          if (!id || id === '#') return; // prevents "'#' is not a valid selector"
+          const target = document.querySelector(id);
+          if (!target) return;
+          e.preventDefault();
+          const headerOffset = 84;
+          const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        });
+      });
+
+      // Mobile nav drawer
+      const mobileNav = document.getElementById('mobileNav');
+      const openBtn = document.getElementById('mobileNavOpen');
+      const closeBtn = document.getElementById('mobileNavClose');
+
+      const openMenu = (e) => {
+        if (e) e.preventDefault();
+        if (!mobileNav) return;
+        mobileNav.classList.add('is-open');
+        mobileNav.setAttribute('aria-hidden', 'false');
+        if (openBtn) openBtn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        document.body.classList.add('nav-open');
+      };
+
+      const closeMenu = () => {
+        if (!mobileNav) return;
+        mobileNav.classList.remove('is-open');
+        mobileNav.setAttribute('aria-hidden', 'true');
+        if (openBtn) openBtn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        document.body.classList.remove('nav-open');
+      };
+
+      if (openBtn) openBtn.addEventListener('click', openMenu);
+      if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+      if (mobileNav) {
+        mobileNav.addEventListener('click', (e) => {
+          if (e.target === mobileNav) closeMenu();
+        });
+      }
+
+      document.querySelectorAll('.js-mobile-link').forEach(a => {
+        a.addEventListener('click', () => closeMenu());
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 900) closeMenu();
+      });
+
+      // Mobile Products & Services accordion
+      const acc = document.getElementById('mobileProducts');
+      const accBtn = acc ? acc.querySelector('.mobile-acc-trigger') : null;
+      if (acc && accBtn) {
+        // default open
+        acc.classList.remove('is-collapsed');
+        accBtn.addEventListener('click', () => {
+          const collapsed = acc.classList.toggle('is-collapsed');
+          accBtn.setAttribute('aria-expanded', String(!collapsed));
+        });
+      }
+
+      // Products & Services deep-linking (open the right OS tile)
+      const openOsTile = (segment) => {
+        const map = {
+          'revenue-os': 'revenue-os',
+          'marketing-os': 'marketing-os',
+          'operations-os': 'operations-os',
+          'customer-service-os': 'customer-service-os'
+        };
+        const id = map[String(segment || '').trim()];
+        if (!id) return;
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        document.querySelectorAll('#products-services details.os-acc').forEach(d => {
+          if (d !== el) d.removeAttribute('open');
+        });
+        el.setAttribute('open', '');
+
+        const section = document.getElementById('products-services');
+        if (!section) return;
+        const headerOffset = 84;
+        const y = section.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      };
+
+      document.querySelectorAll('.dropdown a[data-segment]').forEach(a => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          openOsTile(a.getAttribute('data-segment'));
+        });
+      });
+
+      document.querySelectorAll('.mobile-acc-panel a[data-segment]').forEach(a => {
+        a.addEventListener('click', () => {
+          const seg = a.getAttribute('data-segment');
+          setTimeout(() => openOsTile(seg), 120);
+        });
+      });
+
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const seg = params.get('os');
+        if (window.location.hash === '#products-services' && seg) {
+          setTimeout(() => openOsTile(seg), 250);
+        }
+      } catch (_) {}
+
+      // Sticky chat button (if present)
+      const stickyChat = document.getElementById('stickyChat');
+      const chatLauncher = document.getElementById('chatLauncher');
+      if (stickyChat) {
+        stickyChat.addEventListener('click', () => {
+          if (chatLauncher) chatLauncher.click();
+        });
+      }
+    });
+  </script>
 </head>
 <body>
-  <div class="container">
-    <h1>Digital by Default</h1>
 
-    <p class="tagline">
-      Your <span class="highlight">intelligent AI workflow partner</span>.<br>
-      Let’s build AI automations that scale your business without adding headcount.
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="logo-lockup" aria-label="Digital by Default">
+          <div class="logo-text">Digital by Default</div>
+          <div class="logo-sub">
+            <span class="logo-powered">Powered by</span>
+            <span class="logo-intel"><span>Intelligence</span></span>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Primary">
+          <div class="nav-item">
+            <a href="#products-services">Products &amp; Services</a>
+            <div class="dropdown" aria-label="Products and Services">
+              <a href="#products-services" data-segment="marketing-os">
+                <strong>Marketing OS</strong><br><span class="nav-sub">Demand, attribution, growth</span>
+              </a>
+              <a href="#products-services" data-segment="revenue-os">
+                <strong>Revenue OS</strong><br><span class="nav-sub">Capture, qualify, book</span>
+              </a>
+              <a href="#products-services" data-segment="operations-os">
+                <strong>Operations OS</strong><br><span class="nav-sub">Automation, efficiency, scale</span>
+              </a>
+              <a href="#products-services" data-segment="customer-service-os">
+                <strong>Customer Service OS</strong><br><span class="nav-sub">Support, retention, experience</span>
+              </a>
+            </div>
+          </div>
+          <a href="#paid-consult">Consulting</a>
+          <a href="#about-digital-by-default">About</a>
+          <a href="#roi-calculator">ROI Calculator</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <div class="header-right">
+        <a class="btn btn-strategy btn-header" href="#contact">Book a Call</a>
+        <a class="btn btn-partner btn-header" href="https://calendly.com/hello-digitalbydefault/one-to-one-consult" target="_blank" rel="noopener noreferrer" title="Book a Paid Consult">Book a Paid Consult</a>
+        <button class="hamburger" id="mobileNavOpen" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+          <span class="menu-text">Menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile nav drawer -->
+  <div class="mobile-nav-overlay" id="mobileNav" aria-hidden="true" role="dialog" aria-label="Menu">
+    <div class="mobile-drawer" role="document">
+      <div class="mobile-drawer-header">
+        <div class="logo-lockup" aria-label="Digital by Default">
+          <div class="logo-text">Digital by Default</div>
+          <div class="logo-sub">
+            <span class="logo-powered">Powered by</span>
+            <span class="logo-intel"><span>Intelligence</span></span>
+          </div>
+        </div>
+        <button class="mobile-close" id="mobileNavClose" aria-label="Close menu">×</button>
+      </div>
+
+      <div class="mobile-links">
+        <div class="mobile-accordion" id="mobileProducts">
+          <button class="mobile-acc-trigger" type="button" aria-expanded="true" aria-controls="mobileProductsPanel">
+            Products &amp; Services
+            <span class="mobile-acc-icon" aria-hidden="true">▾</span>
+          </button>
+          <div class="mobile-acc-panel" id="mobileProductsPanel">
+            <a href="#products-services" data-segment="revenue-os" class="js-mobile-link">Revenue OS</a>
+            <a href="#products-services" data-segment="marketing-os" class="js-mobile-link">Marketing OS</a>
+            <a href="#products-services" data-segment="operations-os" class="js-mobile-link">Operations OS</a>
+            <a href="#products-services" data-segment="customer-service-os" class="js-mobile-link">Customer Service OS</a>
+          </div>
+        </div>
+
+        <div class="mobile-section-label">Company</div>
+        <a href="#about-digital-by-default" class="js-mobile-link">About Digital by Default</a>
+        <a href="#roi-calculator" class="js-mobile-link">ROI Calculator</a>
+        <a href="#paid-consult" class="js-mobile-link">Consulting</a>
+        <a href="#contact" class="js-mobile-link">Contact</a>
+        <a href="https://calendly.com/hello-digitalbydefault/one-to-one-consult" target="_blank" rel="noopener noreferrer" class="js-mobile-link">Book a Paid Consult</a>
+
+        <div class="mobile-section-label">Actions</div>
+        <div class="mobile-cta">
+          <a class="btn btn-strategy js-mobile-link" href="#contact">Book a Strategy Call</a>
+          <a class="btn btn-partner js-mobile-link" href="https://calendly.com/hello-digitalbydefault/one-to-one-consult" target="_blank" rel="noopener noreferrer">Book a Paid Consult</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container hero">
+    <h1>
+      <span class="headline-wrap" aria-label="Offerings headline">
+        <span class="swap-word hero-swap" id="heroHeadline">
+          <strong class="hero-os">AI Automation</strong><br>
+          <span class="hero-sub hero-sub--tight">scale without extra headcount.</span>
+        </span>
+      </span>
+    </h1>
+
+    <p>
+      From pipeline to <span class="rotating-word" id="rotatingWord">bookings</span><span class="dash-tight">—</span>
+      Transform your business with AI workflow automation engineered for measurable results.
     </p>
 
-    <form action="https://formsubmit.co/hello@digitalbydefault.co.uk" method="POST">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_subject" value="New Digital by Default Waiting List Signup">
-      <input type="hidden" name="_next" value="https://www.digitalbydefault.co.uk/thank-you.html">
+    <div class="hero-powered">
+      <span class="pb-text">Powered by Digital by Default</span>
+      <span class="pb-intelligence">Intelligence</span>
+    </div>
 
-      <input type="text" name="name" placeholder="Full Name" required />
-      <input type="email" name="email" placeholder="Email Address" required />
-      <input type="tel" name="phone" placeholder="Phone Number" required />
-      <button type="submit">Join the Waiting List</button>
-    </form>
+    <div class="hero-divider" aria-hidden="true"></div>
 
-    <div class="footer">© Digital by Default · AI Systems for Growth</div>
+    <div class="cta-group">
+      
+      <!-- Automation Opportunity Audit Banner -->
+      <div style="margin-top:18px; width:100%; max-width:980px;">
+        <div style="border-radius:18px; padding:20px 22px; border:1px solid rgba(255,255,255,0.12); background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)); position:relative; overflow:hidden;">
+          <div style="position:absolute; inset:0; background: radial-gradient(600px 200px at 10% 0%, rgba(84,160,255,0.25), transparent 60%); pointer-events:none;"></div>
+          <div style="position:relative; z-index:1; display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between;">
+            <div style="min-width:260px; flex:1;">
+              <div style="font-size:13px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:6px;">Automation Opportunity Audit</div>
+              <div style="font-size:15px; font-weight:600; color:rgba(255,255,255,0.9); line-height:1.5; max-width:640px;">
+                Turn manual workflows into automated systems. Free audit reveals what to automate now, where AI multiplies your impact, and which tasks need the human touch
+              </div>
+            </div>
+            <a href="#contact" class="btn btn-strategy" style="min-width:0; white-space:nowrap;">Request Free Audit</a>
+            <div style="flex-basis:100%; height:0;"></div>
+            
+          </div>
+        </div>
+      </div>
+      <a class="btn btn-strategy" href="#contact">Book a Strategy Call</a>
+      <div class="cta-next" style="margin-top:14px; width:100%; max-width: 980px;">
+        <strong style="display:block; margin-bottom:12px; color: rgba(255,255,255,0.9); font-size:14px;">What happens next</strong>
+
+        <div class="cta-steps tile-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:18px;">
+          <div class="card" style="padding:18px;">
+            <h4 style="font-size:14px; font-weight:800; margin-bottom:10px; letter-spacing:-0.01em;">1) Discovery Call</h4>
+            <ul style="padding-left:18px; margin:0; color: rgba(255,255,255,0.78); font-size:13px;">
+              <li>We learn how your business actually works: goals, constraints, handoffs, and what a ‘win’ looks like.</li>
+              <li>We map your tech stack and where data lives: CRMs, inboxes, spreadsheets, internal tools.</li>
+              <li>We audit processes to find real bottlenecks and decide what should and shouldn’t be automated.</li>
+            </ul>
+          </div>
+
+          <div class="card" style="padding:18px;">
+            <h4 style="font-size:14px; font-weight:800; margin-bottom:10px; letter-spacing:-0.01em;">2) Design, Build &amp; Validate</h4>
+            <ul style="padding-left:18px; margin:0; color: rgba(255,255,255,0.78); font-size:13px;">
+              <li>We prioritize high-impact opportunities and decide where AI helps, and where it doesn’t.</li>
+              <li>We design and build custom workflows, test different approaches on real data, and explain our choices in plain language.</li>
+              <li>We run evaluations in a real-world environment before full rollout.</li>
+            </ul>
+          </div>
+
+          <div class="card" style="padding:18px;">
+            <h4 style="font-size:14px; font-weight:800; margin-bottom:10px; letter-spacing:-0.01em;">3) Launch, Monitor &amp; Optimise</h4>
+            <ul style="padding-left:18px; margin:0; color: rgba(255,255,255,0.78); font-size:13px;">
+              <li>We launch into production with clear success metrics and safeguards.</li>
+              <li>We monitor performance, collect feedback from your team and customers, and fix issues quickly.</li>
+              <li>We continuously refine prompts, logic, and models so the system improves as your business evolves.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-note" style="margin-top:12px; color: rgba(255,255,255,0.72); font-size: 14px;">
+      <strong>For founders, CROs, and revenue leaders only.</strong> 30-minute working session · No sales pitch.
+    </div>
   </div>
+
+  <section class="container" id="about-digital-by-default">
+    <h2 class="section-title">The Digital by Default Method</h2>
+
+    <div class="card" style="max-width: 980px;">
+      <p><strong>Digital by Default builds AI workflow systems that capture demand, book meetings, and drive revenue — automatically.</strong></p>
+
+      <p style="margin-top:12px;">We build and implement <strong>operating systems</strong> across Sales, Marketing, Operations, and Customer Service — so your business runs with always‑on speed, consistent quality, and systems that improve as you scale.</p>
+
+      <div class="method-quote" style="margin-top:18px; max-width: 860px;">
+        <p class="method-quote-text">“Organizations use Digital By Default to architect autonomous operating systems that drive efficiency at scale.”</p>
+        <p class="method-quote-author">Erhan Kennedy Timur — Founder</p>
+      </div>
+
+      <div class="mobile-only mobile-summary" aria-label="About summary">
+        <p><strong>What this means in practice:</strong></p>
+        <ul>
+          <li><strong>Faster responses:</strong> capture and qualify intent the moment it appears.</li>
+          <li><strong>24/7 coverage:</strong> customers get answers and routing without waiting.</li>
+          <li><strong>Measurable lift:</strong> systems are optimised against bookings, conversion and revenue.</li>
+        </ul>
+      </div>
+
+      <div class="tile-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:24px; margin-top:26px;">
+        <div class="card" style="padding:22px;">
+          <h3 style="font-size:18px; margin-bottom:8px;">Move faster than competitors</h3>
+          <p style="font-size:15px;">Capture and qualify intent the moment it appears — not when someone is online. Speed wins revenue.</p>
+        </div>
+        <div class="card" style="padding:22px;">
+          <h3 style="font-size:18px; margin-bottom:8px;">Delight customers 24/7</h3>
+          <p style="font-size:15px;">Always‑on engagement answers questions, routes requests, and removes friction — improving satisfaction and retention.</p>
+        </div>
+        <div class="card" style="padding:22px;">
+          <h3 style="font-size:18px; margin-bottom:8px;">Turn AI into measurable outcomes</h3>
+          <p style="font-size:15px;">Systems are measured, optimised, and scaled. Less noise, more results.</p>
+        </div>
+      </div>
+
+      <p style="margin-top:18px; color: rgba(255,255,255,0.78);">The question isn’t whether AI changes your market. It’s whether you’re ahead of it.</p>
+
+      <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+        <a href="#contact" class="btn btn-strategy" style="min-width: 0;">Book a Strategy Call</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" id="products-services">
+    <h2 class="section-title">Operating Systems</h2>
+
+    <div class="card" style="margin-bottom:48px;">
+      <p><strong>We build and implement operating systems across the four functions that decide growth:</strong> Revenue, Marketing, Operations, and Customer Service.</p>
+      <p style="margin-top:12px;">Each OS is designed to be <strong>autonomous by default</strong>: always‑on execution, instant response, clean data flows, and measurable outcomes.</p>
+
+      <div class="mobile-only mobile-summary" aria-label="Operating systems summary">
+        <p><strong>What we build:</strong></p>
+        <ul>
+          <li><strong>Revenue OS:</strong> capture, qualify, and book meetings automatically.</li>
+          <li><strong>Marketing OS:</strong> orchestrate campaigns and attribution with better signal.</li>
+          <li><strong>Operations OS:</strong> remove manual work and scale delivery.</li>
+          <li><strong>Customer Service OS:</strong> faster resolution and retention.</li>
+        </ul>
+      </div>
+
+      <div class="tile-grid os-grid" style="display:grid; grid-template-columns: repeat(2, 1fr); gap:24px; margin-top:26px;">
+
+        <details class="os-acc" id="revenue-os">
+          <summary class="os-sum">
+            <div class="os-left">
+              <div class="os-title">Revenue OS</div>
+              <div class="os-sub">Capture demand → qualify instantly → book meetings.</div>
+            </div>
+            <span class="os-icon" aria-hidden="true">▾</span>
+          </summary>
+          <div class="os-body">
+            <p><strong>Outcome:</strong> more booked conversations, less lead decay, faster revenue conversion.</p>
+            <ul>
+              <li>Always‑on inbound capture (web, email, socials)</li>
+              <li>Instant qualification + routing to the right owner</li>
+              <li>Automated follow‑up and calendar booking</li>
+              <li>Clean CRM hygiene + reporting that reflects reality</li>
+            </ul>
+            <div class="os-cta">
+              <a href="#contact" class="btn btn-strategy" style="min-width:0;">Book a Strategy Call</a>
+            </div>
+          </div>
+        </details>
+
+        <details class="os-acc" id="marketing-os">
+          <summary class="os-sum">
+            <div class="os-left">
+              <div class="os-title">Marketing OS</div>
+              <div class="os-sub">Engineered to generate demand and improve signal.</div>
+            </div>
+            <span class="os-icon" aria-hidden="true">▾</span>
+          </summary>
+          <div class="os-body">
+            <p><strong>Outcome:</strong> consistent demand generation with clearer attribution and faster iteration.</p>
+            <ul>
+              <li>Campaign orchestration + always‑on optimisation</li>
+              <li>Attribution + performance reporting you can trust</li>
+              <li>Content workflows that ship faster with governance</li>
+              <li>Lead handoff rules that reduce leakage</li>
+            </ul>
+            <div class="os-cta">
+              <a href="#contact" class="btn btn-strategy" style="min-width:0;">Book a Strategy Call</a>
+            </div>
+          </div>
+        </details>
+
+        <details class="os-acc" id="operations-os">
+          <summary class="os-sum">
+            <div class="os-left">
+              <div class="os-title">Operations OS</div>
+              <div class="os-sub">Remove manual work and scale delivery faster.</div>
+            </div>
+            <span class="os-icon" aria-hidden="true">▾</span>
+          </summary>
+          <div class="os-body">
+            <p><strong>Outcome:</strong> lower operational drag, fewer handoffs, and higher throughput without headcount creep.</p>
+            <ul>
+              <li>Workflow automation across tools and teams</li>
+              <li>Approvals, handoffs, and task routing without delays</li>
+              <li>Quality checks + audit trails baked in</li>
+              <li>Dashboards that show bottlenecks in real time</li>
+            </ul>
+            <div class="os-cta">
+              <a href="#contact" class="btn btn-strategy" style="min-width:0;">Book a Strategy Call</a>
+            </div>
+          </div>
+        </details>
+
+        <details class="os-acc" id="customer-service-os">
+          <summary class="os-sum">
+            <div class="os-left">
+              <div class="os-title">Customer Service OS</div>
+              <div class="os-sub">Faster resolution, higher satisfaction, better retention.</div>
+            </div>
+            <span class="os-icon" aria-hidden="true">▾</span>
+          </summary>
+          <div class="os-body">
+            <p><strong>Outcome:</strong> customers get answers instantly and escalations route correctly — improving CSAT and retention.</p>
+            <ul>
+              <li>Always‑on support triage + knowledge responses</li>
+              <li>Smart routing for edge cases and escalations</li>
+              <li>Customer intent capture → proactive follow‑ups</li>
+              <li>Unified service data across channels</li>
+            </ul>
+            <div class="os-cta">
+              <a href="#contact" class="btn btn-strategy" style="min-width:0;">Book a Strategy Call</a>
+            </div>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="container" id="reasons">
+    <h2 class="section-title">Top 3 reasons to work with Digital by Default today:</h2>
+
+    <div class="mobile-only mobile-summary" aria-label="Top reasons summary">
+      <ul>
+        <li><strong>Speed wins:</strong> people expect instant answers and instant booking.</li>
+        <li><strong>AI adoption is accelerating:</strong> early movers compound advantage fast.</li>
+        <li><strong>Costs are rising:</strong> automate before CAC + support costs squeeze margin.</li>
+      </ul>
+    </div>
+
+    <p class="reasons-lede" style="margin:16px 0 32px; font-weight:700; color: rgba(255,255,255,0.88); max-width: 820px;">AI adoption has moved from experimentation to deployment. The teams acting now are building faster response loops, cleaner data, and systems that learn — while late adopters pay more for less advantage.</p>
+
+    <div class="grid tile-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="card" style="padding:24px;">
+        <h3 style="font-size:18px; margin-bottom:8px;">1) The market has shifted to instant expectations</h3>
+        <p style="font-size:15px;">Response time is now a competitive advantage. Always‑on workflows capture intent immediately, qualify in seconds, and move prospects into booked conversations before they move on.</p>
+      </div>
+      <div class="card" style="padding:24px;">
+        <h3 style="font-size:18px; margin-bottom:8px;">2) Early adopters are compounding operational advantage</h3>
+        <p style="font-size:15px;">The strongest teams aren’t “using tools” — they’re building operating systems. Every week deployed creates better workflows, better data, and better outcomes. That learning curve compounds.</p>
+      </div>
+      <div class="card" style="padding:24px;">
+        <h3 style="font-size:18px; margin-bottom:8px;">3) Rising costs are squeezing growth</h3>
+        <p style="font-size:15px;">Customer acquisition and support costs trend upward. Autonomous systems protect margin by doing the repetitive work instantly — without scaling headcount — while your team focuses on closing and retention.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:28px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+      <a href="#contact" class="btn btn-strategy" style="min-width: 0;">Book a Strategy Call</a>
+      <span style="color: rgba(255,255,255,0.72); font-size: 14px;">We’ll identify the one operating system that will create the fastest measurable lift in the next 30–60 days.</span>
+    </div>
+  </section>
+
+  <section class="container" id="paid-consult" aria-label="Paid consult">
+    <h2 class="section-title">Paid Consult</h2>
+<div class="grid" style="grid-template-columns: 1fr;">
+      <div class="card" style="max-width: 980px;">
+        <h3>One-to-One Paid Consult</h3>
+        <p style="margin-top:10px; color: rgba(255,255,255,0.78);">This session is for you to ask questions, pressure‑test your plans, and get direct guidance across automation, AI workflow design, systems integration, and implementation strategy — with no obligation to proceed into a project.</p>
+
+        <ul style="margin-top:14px; padding-left:18px; color: rgba(255,255,255,0.78);">
+          <li><strong>60 minutes</strong> of focused advisory</li>
+          <li>Live Q&amp;A on your workflows and systems</li>
+          <li>Practical recommendations you can act on immediately</li>
+          <li>Clear options for what to build next (if you want us to support implementation)</li>
+        </ul>
+
+        <p style="margin-top:14px; color: rgba(255,255,255,0.78);">If you decide to work with Digital by Default on a project afterwards, we’ll <strong>deduct the consult fee</strong> from your implementation costs.</p>
+
+        <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+          <a class="btn btn-strategy" href="https://calendly.com/hello-digitalbydefault/one-to-one-consult" target="_blank" rel="noopener noreferrer" style="min-width: 0;">Book a Paid Consult</a>
+          <a class="btn btn-partner btn-pill" href="#contact" style="min-width: 0;">Or start with a free strategy call</a>
+        </div>
+
+        <p style="margin-top:12px; color: rgba(255,255,255,0.68); font-size: 13px;">The consult is ideal if you want expert input before committing to any build. If implementation follows, we apply the session fee as credit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI Calculator Section -->
+  <section class="container roi-section" id="roi-calculator">
+    <h2 class="section-title">Let’s Do the Maths</h2>
+    <div class="roi-wrap">
+      <div class="roi-calculator">
+        <h2>ROI Calculator</h2>
+        <p class="subtitle">See how much time and money workflow automation could save your team.</p>
+
+        <div class="input-group">
+          <label>How many people handle manual tasks?</label>
+          <div class="slider-container">
+            <input type="range" id="teamSize" min="1" max="50" value="10">
+            <div class="value-display"><span id="teamSizeValue">10</span> people</div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Hours per employee per week on manual tasks</label>
+          <div class="slider-container">
+            <input type="range" id="hoursPerWeek" min="1" max="45" value="2">
+            <div class="value-display"><span id="hoursPerWeekValue">2</span> hrs/wk</div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Average hourly cost (salary + overhead)</label>
+          <div class="slider-container">
+            <input type="range" id="hourlyRate" min="10" max="150" value="10">
+            <div class="value-display">£<span id="hourlyRateValue">10</span>/hr</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="results-header">Your Potential Savings</div>
+
+        <div class="results-grid">
+          <div class="result-card">
+            <div class="label">Current Annual Cost</div>
+            <div class="value" id="annualCost">£0</div>
+            <div class="subtext">of manual work</div>
+          </div>
+          <div class="result-card highlight">
+            <div class="label">Projected Annual Savings</div>
+            <div class="value" id="annualSavings">£0</div>
+            <div class="subtext">with 75% automation</div>
+          </div>
+          <div class="result-card">
+            <div class="label">Hours Reclaimed</div>
+            <div class="value" id="hoursReclaimed">0</div>
+            <div class="subtext">hours per year</div>
+          </div>
+          <div class="result-card">
+            <div class="label">Time Back Per Week</div>
+            <div class="value" id="weeklyHoursSaved">0</div>
+            <div class="subtext">hours for strategic work</div>
+          </div>
+        </div>
+
+        <div class="summary">
+          <strong>Bottom line:</strong> Your team could redirect <span id="summaryHours">0</span> hours annually toward revenue‑generating activities instead of repetitive manual tasks.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" id="contact">
+    <h2 class="section-title">The future of business is <span class="autonomous-highlight">Autonomous</span>.</h2>
+    <p style="margin-top:12px; max-width:760px; font-size:18px; color: rgba(255,255,255,0.82);">Autonomous systems don’t just move faster — they close gaps humans can’t. Always‑on execution, instant response, and workflows that turn intent into revenue without delay.</p>
+    <p style="margin-top:8px; margin-bottom:24px; max-width:760px; font-size:16px; color: rgba(255,255,255,0.72);">If you’re ready to replace manual effort with AI-driven technology solutions for the modern business, this is where it starts.</p>
+
+    <div class="contact-grid">
+      <!-- Lead capture (HubSpot) -->
+      <div class="card contact-tile contact-tile--hubspot">
+        <div class="contact-tile-inner">
+          <div class="contact-title">Let’s build your Operating System</div>
+          <p class="contact-desc">Share a few details and we’ll map the fastest path to measurable outcomes across Revenue, Marketing, Operations, or Customer Service.</p>
+
+          <div class="hubspot-shell" aria-label="HubSpot lead form">
+            <p class="mini">Submit your details and we’ll get back within 24–48 hours.</p>
+
+            <div class="form-skeleton" id="hsSkeleton" aria-hidden="true">
+              <div class="sk-row sk-h"></div>
+              <div class="sk-row"></div>
+              <div class="sk-row"></div>
+              <div class="sk-row"></div>
+              <div class="sk-row"></div>
+              <div class="sk-btn"></div>
+            </div>
+
+            <div class="hs-form-frame" data-region="eu1" data-form-id="094808a0-a1f4-41b2-80d9-da412d531320" data-portal-id="147581019"></div>
+            <p class="mini" style="margin-top:10px; font-size:12px; color: rgba(255,255,255,0.62);">By submitting, you agree to be contacted by Digital by Default.</p>
+          </div>
+<p style="margin-top:12px; color: rgba(255,255,255,0.75); font-size: 14px;">
+            <strong>Note:</strong> We work best with founders, CROs, and revenue leaders who want execution — not advice.
+          </p>
+        </div>
+      </div>
+
+      <!-- Calendly strategy call -->
+      <div class="card contact-tile">
+        <div class="contact-tile-inner">
+          <div class="contact-kicker">Calendly</div>
+          <div class="contact-title">Book a Strategy Call</div>
+          <p class="contact-desc">Pick a time that suits you. We’ll identify the highest‑leverage operating system to ship first.</p>
+
+          <div class="calendly-shell" aria-label="Calendly embed">
+            <iframe
+              title="Schedule a Strategy Call"
+              src="https://calendly.com/hello-digitalbydefault/30min"
+              style="width: 100%; height: 560px; border: 0;"
+              loading="lazy"
+            ></iframe>
+          </div>
+
+          <p style="margin-top:12px; color: rgba(255,255,255,0.72); font-size: 13px;">If the embed doesn’t load, email us with “Strategy Call” in the subject.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div style="display:flex; flex-direction:column; gap:14px; align-items:center;">
+      <div class="footer-powered" aria-label="Powered by Digital by Default Intelligence">
+        <span class="footer-powered-text">Powered by Digital by Default</span>
+        <span class="logo-intel footer-intel"><span>Intelligence</span></span>
+      </div>
+      <p style="font-size:13px; color: rgba(255,255,255,0.6); margin-top:-6px;">“AI doesn’t create advantage. Execution does.”</p>
+      <p style="font-size:14px; color: rgba(255,255,255,0.72);">
+        © Digital by Default ·
+        <a href="#paid-consult" style="color: rgba(255,255,255,0.75); text-decoration: none;">Consulting</a> ·
+        <a href="#about-digital-by-default" style="color: rgba(255,255,255,0.75); text-decoration: none;">About</a> ·
+        <a href="#contact" style="color: rgba(255,255,255,0.75); text-decoration: none;">Contact</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Hero headline swipe rotation (stable frame + no layout shift)
+    document.addEventListener('DOMContentLoaded', () => {
+      const el = document.getElementById('heroHeadline');
+      if (!el) return;
+
+      const phrases = [
+        '<strong class="hero-os">AI Automation</strong><br><span class="hero-sub hero-sub--tight">scale without extra headcount.</span>',
+        '<strong class="hero-os">Revenue OS</strong><br><span class="hero-sub">engineered for growth.</span>',
+        '<strong class="hero-os">Marketing OS</strong><br><span class="hero-sub">engineered for demand.</span>',
+        '<strong class="hero-os">Operations OS</strong><br><span class="hero-sub">engineered to scale faster.</span>',
+        '<strong class="hero-os">Customer Service OS</strong><br><span class="hero-sub">engineered for satisfaction.</span>'
+      ];
+
+      let i = 0;
+      el.innerHTML = phrases[0];
+
+      const dur = 5200;
+      const transition = 680;
+
+      setInterval(() => {
+        const next = (i + 1) % phrases.length;
+        el.classList.add('is-out');
+
+        window.setTimeout(() => {
+          el.classList.remove('is-out');
+          el.classList.add('is-in');
+          el.innerHTML = phrases[next];
+
+          requestAnimationFrame(() => {
+            el.classList.remove('is-in');
+          });
+
+          i = next;
+        }, transition);
+      }, dur);
+    });
+
+    // ROI Calculator Logic (per‑employee model)
+    document.addEventListener('DOMContentLoaded', () => {
+      const AUTOMATION_EFFICIENCY = 0.75;
+      const WEEKS_PER_YEAR = 52;
+
+      const teamSizeSlider = document.getElementById('teamSize');
+      if (!teamSizeSlider) return;
+      const hoursPerWeekSlider = document.getElementById('hoursPerWeek');
+      const hourlyRateSlider = document.getElementById('hourlyRate');
+
+      const teamSizeValue = document.getElementById('teamSizeValue');
+      const hoursPerWeekValue = document.getElementById('hoursPerWeekValue');
+      const hourlyRateValue = document.getElementById('hourlyRateValue');
+
+      const annualCostEl = document.getElementById('annualCost');
+      const annualSavingsEl = document.getElementById('annualSavings');
+      const hoursReclaimedEl = document.getElementById('hoursReclaimed');
+      const weeklyHoursSavedEl = document.getElementById('weeklyHoursSaved');
+      const summaryHoursEl = document.getElementById('summaryHours');
+
+      const formatCurrency = v => '£' + Math.round(v).toLocaleString();
+      const formatNumber = v => Math.round(v).toLocaleString();
+
+      function calculate() {
+        const teamSize = parseInt(teamSizeSlider.value);
+        const hoursPerWeek = parseInt(hoursPerWeekSlider.value);
+        const hourlyRate = parseInt(hourlyRateSlider.value);
+
+        teamSizeValue.textContent = teamSize;
+        hoursPerWeekValue.textContent = hoursPerWeek;
+        hourlyRateValue.textContent = hourlyRate;
+
+        const totalWeeklyHours = teamSize * hoursPerWeek;
+        const annualCost = totalWeeklyHours * hourlyRate * WEEKS_PER_YEAR;
+        const annualSavings = annualCost * AUTOMATION_EFFICIENCY;
+        const hoursReclaimed = totalWeeklyHours * AUTOMATION_EFFICIENCY * WEEKS_PER_YEAR;
+        const weeklyHoursSaved = totalWeeklyHours * AUTOMATION_EFFICIENCY;
+
+        annualCostEl.textContent = formatCurrency(annualCost);
+        annualSavingsEl.textContent = formatCurrency(annualSavings);
+        hoursReclaimedEl.textContent = formatNumber(hoursReclaimed);
+        weeklyHoursSavedEl.textContent = formatNumber(weeklyHoursSaved);
+        summaryHoursEl.textContent = formatNumber(hoursReclaimed);
+      }
+
+      [teamSizeSlider, hoursPerWeekSlider, hourlyRateSlider].forEach(el => el.addEventListener('input', calculate));
+      calculate();
+    });
+
+    // Inline word rotation: bookings → meetings → revenue → winning ✨
+    document.addEventListener('DOMContentLoaded', () => {
+      const wordEl = document.getElementById('rotatingWord');
+      if (!wordEl) return;
+
+      const words = ['bookings', 'meetings', 'revenue', 'winning ✨'];
+      let idx = 0;
+
+      wordEl.textContent = words[0];
+
+      const cycleMs = 2400; // total cycle (matches rotateWord keyframes)
+      const swapAtMs = 1100; // swap near the middle of the fade-out/in
+
+      const tick = () => {
+        wordEl.style.setProperty('--rotDur', `${cycleMs}ms`);
+        wordEl.classList.add('is-animating');
+
+        window.setTimeout(() => {
+          idx = (idx + 1) % words.length;
+          wordEl.textContent = words[idx];
+        }, swapAtMs);
+
+        window.setTimeout(() => {
+          wordEl.classList.remove('is-animating');
+          void wordEl.offsetWidth;
+        }, cycleMs);
+      };
+
+      // Start after a short delay so first paint is stable
+      window.setTimeout(() => {
+        tick();
+        window.setInterval(tick, cycleMs + 200);
+      }, 600);
+    });
+  </script>
+  <!-- HubSpot lead capture (EU region) -->
+  <script src="https://js-eu1.hsforms.net/forms/embed/147581019.js" defer></script>
+  <script>
+    // HubSpot form loader polish: show skeleton until the embed renders
+    document.addEventListener('DOMContentLoaded', () => {
+      const shell = document.querySelector('.hubspot-shell');
+      const setAuditField = () => {
+        try {
+          if (!localStorage.getItem(FREE_AUDIT_FLAG_KEY)) return;
+          const form = shell ? shell.querySelector('form') : null;
+          if (!form) return;
+
+          let input = form.querySelector('input[name="lead_source_detail"]');
+          if (!input) {
+            input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'lead_source_detail';
+            form.appendChild(input);
+          }
+          input.value = 'Automation Opportunity Audit';
+        } catch(e){}
+      };
+      const frame = document.querySelector('.hubspot-shell .hs-form-frame');
+      if (!shell || !frame) return;
+
+      const markLoadedIfReady = () => {
+        // The EU embed typically injects an iframe into the hs-form-frame
+        const iframe = frame.querySelector('iframe');
+        const hasForm = frame.querySelector('form');
+        if (iframe || hasForm) {
+          setAuditField();
+          shell.classList.add('is-loaded');
+          return true;
+        }
+        return false;
+      };
+
+      // Try immediately, then observe for injected nodes
+      if (markLoadedIfReady()) return;
+
+      const obs = new MutationObserver(() => {
+        if (markLoadedIfReady()) obs.disconnect();
+      });
+
+      obs.observe(frame, { childList: true, subtree: true });
+
+      // Safety timeout: stop observing after 10s to avoid endless observers
+      window.setTimeout(() => obs.disconnect(), 10000);
+    });
+  </script>
+
 </body>
 </html>
-
-
-
