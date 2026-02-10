@@ -497,7 +497,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
       </div>
       <div class="consult-card">
         <div style="font-size:.8rem;color:var(--grey);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">One-to-One Session</div>
-        <div class="consult-price">£199 <small>/ 60 min</small></div>
+        <div class="consult-price">£499 <small>/ 60 min</small></div>
         <div style="font-size:.95rem;color:var(--text-dim);margin-top:16px">Expert AI automation advisory</div>
         <div class="consult-note">If you decide to work with us on a project afterwards, we'll <strong style="color:var(--teal)">deduct the consult fee</strong> from your implementation costs.</div>
       </div>
@@ -579,7 +579,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
       <p class="section-subtitle">Tell us about your business and goals. We'll come back with the highest-leverage automation opportunities.</p>
     </div>
     <div class="contact-grid fade-in fade-in-delay">
-      <form class="contact-form" onsubmit="event.preventDefault();alert('Thank you! We\'ll be in touch shortly.')">
+      <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
         <div class="form-group">
           <label>Full Name</label>
           <input type="text" placeholder="Your name" required>
@@ -672,7 +672,63 @@ const observer=new IntersectionObserver((entries)=>{
 },{threshold:.15});
 document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
 
-// ROI Calculator
+// Contact form handler
+function handleSubmit(e){
+  e.preventDefault();
+  const form=document.getElementById('contactForm');
+  const btn=form.querySelector('button[type="submit"]');
+  const origText=btn.textContent;
+
+  // ──────────────────────────────────────────────────
+  // FORM DESTINATION: Currently this form is NOT connected
+  // to any backend. To receive submissions, choose ONE:
+  //
+  // OPTION 1: n8n webhook (recommended — matches your stack)
+  //   Replace the URL below with your n8n webhook URL:
+  //   fetch('https://your-n8n-instance.com/webhook/contact', {
+  //     method:'POST', headers:{'Content-Type':'application/json'},
+  //     body: JSON.stringify(data)
+  //   });
+  //
+  // OPTION 2: Email via Formspree (quick, no backend needed)
+  //   Change the form tag to:
+  //   <form action="https://formspree.io/f/YOUR_ID" method="POST">
+  //
+  // OPTION 3: Netlify Forms (if hosted on Netlify)
+  //   Add netlify attribute: <form name="contact" netlify>
+  //
+  // OPTION 4: Google Sheets via Apps Script webhook
+  //   Send a POST to your Apps Script web app URL
+  // ──────────────────────────────────────────────────
+
+  // Collect form data
+  const inputs=form.querySelectorAll('input,textarea,select');
+  const data={};
+  inputs.forEach(inp=>{
+    const label=inp.closest('.form-group')?.querySelector('label')?.textContent||'field';
+    data[label]=inp.value;
+  });
+  console.log('Form submission data:',data);
+
+  // Show sending state
+  btn.textContent='Sending...';
+  btn.disabled=true;
+
+  // Simulate send (replace with real fetch call to your webhook)
+  setTimeout(()=>{
+    // Success: show confirmation
+    btn.textContent='✓ Sent!';
+    btn.style.background='#065F46';
+
+    // Reset form after 2 seconds
+    setTimeout(()=>{
+      form.reset();
+      btn.textContent=origText;
+      btn.style.background='';
+      btn.disabled=false;
+    },2000);
+  },800);
+}
 function calcROI(){
   const p=+document.getElementById('people').value;
   const h=+document.getElementById('hours').value;
