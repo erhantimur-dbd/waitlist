@@ -1,1824 +1,696 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta name="google-site-verification" content="GS-nXkYd8SJHZL8VxMx-pc9xDOMfV6jZMOmrnmhOdKg" />
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Automation Agency | AI Workflow & Revenue Systems | Digital by Default Powered by Intelligence</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    /* Mobile text-only summaries (hide tile cards on small screens) */
-    .mobile-only { display: none; }
-    .tile-grid { display: grid; }
-
-    @media (max-width: 768px) {
-      .mobile-only { display: block; }
-      .tile-grid { display: none !important; }
-
-      .mobile-summary {
-        margin-top: 14px;
-        padding: 16px;
-        border-radius: 16px;
-        border: 1px solid rgba(255,255,255,0.10);
-        background: rgba(255,255,255,0.04);
-      }
-
-      .mobile-summary p { color: rgba(255,255,255,0.82); font-size: 15px; }
-
-      .mobile-summary ul {
-        margin-top: 10px;
-        padding-left: 18px;
-        color: rgba(255,255,255,0.80);
-        font-size: 15px;
-      }
-
-      .mobile-summary li { margin: 8px 0; }
-
-      .mobile-summary strong { color: rgba(255,255,255,0.94); }
-
-      /* Allow hero next-steps tiles on mobile (stacked) */
-      .cta-steps { display: grid !important; grid-template-columns: 1fr !important; }
-      .cta-steps .card { padding: 18px !important; }
-
-      /* Fix: prevent overlap in Reasons section caused by negative margins */
-      #reasons .reasons-lede { margin-top: 14px !important; }
-    }
-
-    :root {
-      --bg-dark: #0b1c2d;
-      --text-light: #ffffff;
-      --text-muted: rgba(255,255,255,0.75);
-      --ai-red: #ff6b6b;
-      --ai-amber: #feca57;
-      --ai-mint: #1dd1a1;
-      --ai-blue: #54a0ff;
-      --ai-indigo: #5f27cd;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background:
-        radial-gradient(1400px 700px at -10% 10%, rgba(84,160,255,0.35), transparent 60%),
-        radial-gradient(900px 600px at 10% 30%, rgba(95,39,205,0.30), transparent 55%),
-        linear-gradient(180deg, #081624 0%, #0b1c2d 55%, #081624 100%);
-      color: var(--text-light);
-      line-height: 1.6;
-    }
-
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: linear-gradient(180deg, rgba(8,22,36,0.85), rgba(8,22,36,0));
-      backdrop-filter: blur(6px);
-    }
-
-    .header-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      min-width: 0;
-    }
-
-    .logo-lockup {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      line-height: 1.05;
-      min-width: 0;
-    }
-
-    .logo-text {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      color: #ffffff;
-      white-space: nowrap;
-    }
-
-    .logo-sub {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      font-weight: 650;
-      color: rgba(255,255,255,0.72);
-      white-space: nowrap;
-    }
-
-    .logo-powered { color: rgba(255,255,255,0.70); font-weight: 600; }
-
-    .logo-intel {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 3px 10px;
-      border-radius: 999px;
-      color: rgba(255,255,255,0.92);
-      font-weight: 800;
-      letter-spacing: 0.15px;
-      background: rgba(8,22,36,0.35);
-      border: 1px solid rgba(255,255,255,0.14);
-      overflow: hidden;
-    }
-
-    /*
-      Digital by Default Intelligence — Stamp of Approval
-      - Encapsulated pill shape = certification seal
-      - Animated multi-colour border = living intelligence / continuous learning
-      - Dark inner fill = contrast + premium feel
-    */
-
-    .logo-intel::before {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      background: linear-gradient(90deg, var(--ai-red), var(--ai-amber), var(--ai-mint), var(--ai-blue), var(--ai-indigo));
-      background-size: 300% 100%;
-      animation: intelligence-flow 10s ease infinite;
-      border-radius: 999px;
-      z-index: 0;
-    }
-
-    .logo-intel::after {
-      content: "";
-      position: absolute;
-      inset: 1px;
-      background: rgba(8,22,36,0.92);
-      border-radius: 999px;
-      z-index: 1;
-    }
-
-    .logo-intel > span { position: relative; z-index: 2; }
-
-    @media (max-width: 900px) {
-      .site-header .logo-sub { display: inline-flex; }
-      .mobile-drawer .logo-sub { display: inline-flex; }
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .nav-item {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-    }
-
-    .dropdown {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      margin-top: 8px;
-      min-width: 180px;
-      background: rgba(8,22,36,0.95);
-      border-radius: 14px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.55);
-      padding: 8px;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(6px);
-      transition: opacity 160ms ease, transform 160ms ease;
-      backdrop-filter: blur(10px);
-    }
-
-    .dropdown a {
-      line-height: 1.25;
-      display: block;
-      padding: 10px 12px;
-      font-size: 14px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.85);
-      border-radius: 10px;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .dropdown a:hover {
-      background: rgba(255,255,255,0.08);
-      color: #ffffff;
-    }
-
-    .nav-item:hover .dropdown {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
-
-    .nav a {
-      text-decoration: none;
-      color: rgba(255,255,255,0.78);
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.1px;
-      padding: 8px 10px;
-      border-radius: 10px;
-      transition: background 160ms ease, color 160ms ease;
-      white-space: nowrap;
-    }
-
-    /* HARD STOP: remove underline on ALL button-like links in all states */
-    a.btn,
-    a.btn:link,
-    a.btn:visited,
-    a.btn:hover,
-    a.btn:active,
-    a.btn:focus {
-      text-decoration: none !important;
-      border-bottom: none !important;
-    }
-
-    .nav a:hover {
-      color: rgba(255,255,255,0.95);
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-
-    .hamburger {
-      display: none;
-      min-width: 64px;
-      height: 42px;
-      padding: 0 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.06);
-      color: rgba(255,255,255,0.92);
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      letter-spacing: 0.3px;
-    }
-
-    .menu-text { font-size: 14px; }
-
-    .hamburger:hover { background: rgba(255,255,255,0.10); }
-
-    /* Mobile nav drawer */
-    .mobile-nav-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 1500;
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(10px);
-      display: none;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 14px;
-    }
-
-    .mobile-nav-overlay.is-open { display: flex; }
-
-    .mobile-drawer {
-      width: min(420px, 92vw);
-      max-height: calc(100vh - 28px);
-      height: auto;
-      margin-top: 72px;
-      background: rgba(8,22,36,0.94);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 18px;
-      box-shadow: 0 30px 90px rgba(0,0,0,0.65);
-      padding: 18px;
-      overflow: auto;
-      transform: translateY(10px) scale(0.98);
-      opacity: 0;
-      transition: transform 180ms ease, opacity 180ms ease;
-    }
-
-    .mobile-nav-overlay.is-open .mobile-drawer {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-    }
-
-    .mobile-drawer-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
-      margin-bottom: 14px;
-    }
-
-    .mobile-drawer-title {
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: 0.2px;
-      color: rgba(255,255,255,0.92);
-    }
-
-    .mobile-close {
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.06);
-      color: rgba(255,255,255,0.90);
-      border-radius: 12px;
-      padding: 10px 12px;
-      cursor: pointer;
-      font-weight: 900;
-      line-height: 1;
-    }
-
-    .mobile-links a {
-      -webkit-tap-highlight-color: transparent;
-      display: block;
-      padding: 12px 12px;
-      border-radius: 12px;
-      text-decoration: none;
-      color: rgba(255,255,255,0.86);
-      font-weight: 650;
-      letter-spacing: 0.1px;
-    }
-
-    .mobile-links a:hover { background: rgba(255,255,255,0.08); }
-
-    .mobile-accordion {
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.03);
-      overflow: hidden;
-      margin-bottom: 6px;
-    }
-
-    .mobile-acc-trigger {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 12px;
-      background: transparent;
-      border: none;
-      color: rgba(255,255,255,0.90);
-      font-weight: 750;
-      letter-spacing: 0.1px;
-      cursor: pointer;
-    }
-
-    .mobile-acc-trigger:hover { background: rgba(255,255,255,0.06); }
-
-    .mobile-acc-icon {
-      display: inline-flex;
-      width: 26px;
-      height: 26px;
-      border-radius: 10px;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.04);
-      transform: rotate(0deg);
-      transition: transform 180ms ease;
-    }
-
-    .mobile-accordion.is-collapsed .mobile-acc-icon { transform: rotate(-90deg); }
-
-    .mobile-acc-panel {
-      padding: 4px;
-      display: grid;
-      gap: 2px;
-    }
-
-    .mobile-accordion.is-collapsed .mobile-acc-panel { display: none; }
-
-    /* Sticky mobile CTA bar */
-    .sticky-cta {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 1199;
-      padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
-      background: linear-gradient(180deg, rgba(8,22,36,0.00), rgba(8,22,36,0.88) 18%, rgba(8,22,36,0.96));
-      border-top: 1px solid rgba(255,255,255,0.10);
-      backdrop-filter: blur(10px);
-      display: none;
-    }
-
-    .sticky-cta-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .sticky-cta .btn {
-      flex: 1;
-      min-width: 0;
-      padding: 12px 14px;
-    }
-
-    .sticky-chat {
-      flex: 0 0 auto;
-      width: 52px;
-      height: 46px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.06);
-      color: rgba(255,255,255,0.92);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-    }
-
-    .sticky-chat:hover { background: rgba(255,255,255,0.10); }
-
-    @media (max-width: 768px) {
-      .sticky-cta { display: block; }
-      body { padding-bottom: 78px; }
-    }
-
-    body.nav-open .sticky-cta,
-    body.modal-open .sticky-cta,
-    body.chat-open .sticky-cta {
-      display: none !important;
-    }
-
-    .mobile-section-label {
-      margin-top: 14px;
-      margin-bottom: 6px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.62);
-      font-weight: 700;
-      letter-spacing: 0.25px;
-      text-transform: uppercase;
-    }
-
-    .mobile-cta {
-      margin-top: 14px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .mobile-cta a {
-      width: 100%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    /* Mobile menu: make Strategy Call text black for contrast */
-    .mobile-cta .btn-strategy {
-      color: #000000 !important;
-    }
-
-    /* Utility: force fully curved corners (pill) */
-    .btn-pill { border-radius: 999px !important; }
-
-    .btn-partner {
-      background: transparent;
-      color: rgba(255,255,255,0.92);
-      border: 1px solid rgba(255,255,255,0.35);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
-      backdrop-filter: blur(6px);
-      opacity: 0.95;
-    }
-
-    .btn-partner:hover {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.55);
-    }
-
-    @media (max-width: 900px) {
-      .hamburger { display: inline-flex; }
-      .nav { display: none; }
-    }
-
-    .btn.btn-header {
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 13px;
-      min-width: unset;
-    }
-
-    .site-header.is-scrolled {
-      background: rgba(8,22,36,0.92);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(10px);
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 56px 24px;
-    }
-
-    /* HERO */
-    .hero {
-      padding-top: 96px;
-      padding-bottom: 96px;
-    }
-
-    .hero h1 {
-      font-size: clamp(36px, 6vw, 64px);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      max-width: 980px;
-      width: 100%;
-    }
-
-    .hero p {
-      margin-top: 20px;
-      font-size: 20px;
-      color: var(--text-muted);
-      max-width: 640px;
-    }
-
-    /* Method quote */
-    .method-quote {
-      margin-top: 18px;
-      max-width: 860px;
-      padding: 14px 16px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .method-quote::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, var(--ai-red), var(--ai-amber), var(--ai-mint), var(--ai-blue), var(--ai-indigo));
-      background-size: 100% 300%;
-      animation: quoteFlow 14s ease infinite;
-      opacity: 0.95;
-    }
-
-    .method-quote-text {
-      font-size: 14px;
-      line-height: 1.55;
-      color: rgba(255,255,255,0.86);
-      font-weight: 650;
-      letter-spacing: -0.01em;
-      font-style: italic;
-    }
-
-    .method-quote-author {
-      margin-top: 8px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.60);
-      font-weight: 700;
-      letter-spacing: 0.12px;
-      text-transform: uppercase;
-    }
-
-    /* Hero divider bar */
-    .hero-divider {
-      margin-top: 18px;
-      margin-bottom: 8px;
-      width: 140px;
-      height: 4px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--ai-red), var(--ai-amber), var(--ai-mint), var(--ai-blue), var(--ai-indigo));
-      background-size: 300% 100%;
-      animation: intelligence-flow 10s ease infinite;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-    }
-
-    .hero-powered {
-      margin-top: 24px;
-      margin-bottom: 16px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .pb-text {
-      font-size: 15px;
-      font-weight: 700;
-      color: rgba(255,255,255,0.90);
-    }
-
-    .pb-intelligence {
-      font-size: 15px;
-      font-weight: 700;
-      padding: 6px 16px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--ai-red), var(--ai-amber), var(--ai-mint), var(--ai-blue), var(--ai-indigo));
-      background-size: 300% 100%;
-      color: #000;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.18), 0 8px 24px rgba(0,0,0,0.30);
-      animation: intelligence-flow 8s ease infinite;
-    }
-
-    @keyframes intelligence-flow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes quoteFlow {
-      0% { background-position: 50% 0%; }
-      50% { background-position: 50% 100%; }
-      100% { background-position: 50% 0%; }
-    }
-
-    /* Footer-specific polish */
-    .footer-powered {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .footer-powered-text {
-      font-size: 13px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.72);
-    }
-
-    .footer-intel::before {
-      animation-duration: 18s;
-    }
-
-    @media (max-width: 640px) {
-      .footer-powered-text { font-size: 12px; }
-      .footer-intel { padding: 2px 8px; font-size: 12px; }
-    }
-
-    /* Rotating hero word */
-    .rotating-word {
-      letter-spacing: -0.02em;
-      margin-right: 0;
-      display: inline-block;
-      width: 8ch;
-      min-width: 8ch;
-      text-align: left;
-      position: relative;
-      font-weight: 800;
-      background: linear-gradient(90deg, var(--ai-red), var(--ai-amber), var(--ai-mint), var(--ai-blue), var(--ai-indigo));
-      background-size: 300% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: intelligence-flow 14s ease infinite;
-    }
-
-    .rotating-word.is-animating {
-      animation:
-        intelligence-flow 14s ease infinite,
-        rotateWord var(--rotDur, 2400ms) ease-in-out 1;
-    }
-
-    .dash-tight {
-      margin-left: 1px;
-      margin-right: 3px;
-      display: inline-block;
-      white-space: nowrap;
-    }
-
-    @keyframes rotateWord {
-      0%   { opacity: 1; transform: translateY(0);    filter: blur(0px); }
-      20%  { opacity: 1; transform: translateY(0);    filter: blur(0px); }
-      35%  { opacity: 0; transform: translateY(-8px); filter: blur(1px); }
-      50%  { opacity: 0; transform: translateY(8px);  filter: blur(1px); }
-      65%  { opacity: 1; transform: translateY(0);    filter: blur(0px); }
-      100% { opacity: 1; transform: translateY(0);    filter: blur(0px); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .rotating-word.is-animating { animation: none; }
-    }
-
-    .cta-group {
-      margin-top: 28px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .cta-group .btn {
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .btn-strategy {
-      background: linear-gradient(135deg, #FFD84D, #F4C430);
-      color: #1a1a1a;
-      box-shadow: 0 12px 32px rgba(244,196,48,0.45);
-      position: relative;
-      overflow: hidden;
-      font-weight: 700;
-      border-radius: 999px;
-      padding: 14px 34px;
-      min-width: 220px;
-      text-align: center;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .btn-strategy::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.45), transparent 45%);
-      opacity: 0.8;
-      pointer-events: none;
-    }
-
-    .btn-strategy:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 48px rgba(244,196,48,0.65);
-    }
-
-    section { padding: 64px 0; }
-
-    .section-title {
-      font-size: 36px;
-      font-weight: 700;
-      margin-bottom: 32px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      align-items: stretch;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.04);
-      border-radius: 20px;
-      padding: 32px;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-    }
-
-    footer {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding: 40px 24px;
-      text-align: center;
-      color: var(--text-muted);
-    }
-
-    /* OS expand tiles */
-    .os-acc {
-      background: rgba(255,255,255,0.04);
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.08);
-      overflow: hidden;
-    }
-
-    .os-sum {
-      list-style: none;
-      cursor: pointer;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px;
-      align-items: center;
-      padding: 22px;
-    }
-
-    .os-sum::-webkit-details-marker { display: none; }
-
-    .os-left { min-width: 0; }
-
-    .os-title { font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
-    .os-sub { margin-top: 6px; font-size: 14px; color: rgba(255,255,255,0.76); }
-
-    .os-icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 10px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.04);
-      transition: transform 180ms ease;
-    }
-
-    details[open] .os-icon { transform: rotate(180deg); }
-
-    .os-body {
-      padding: 0 22px 22px;
-      color: rgba(255,255,255,0.80);
-    }
-
-    .os-body p { color: rgba(255,255,255,0.78); }
-
-    .os-body ul {
-      margin-top: 12px;
-      padding-left: 18px;
-      color: rgba(255,255,255,0.78);
-    }
-
-    .os-body li { margin: 8px 0; }
-
-    .os-cta {
-      margin-top: 16px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .os-cta .btn { margin-inline: auto; }
-
-    @media (max-width: 980px) {
-      .os-grid { grid-template-columns: 1fr !important; }
-      .os-icon { display: none; }
-    }
-
-    @media (max-width: 768px) {
-      .hero { padding-top: 80px; padding-bottom: 80px; }
-      .hero h1 { font-size: 40px; }
-      .header-inner { padding: 16px 18px; }
-      .btn.btn-header { display: none; }
-      .grid { grid-template-columns: 1fr; }
-    }
-
-    /* Hero swipe phrase */
-    .headline-wrap {
-      display: block;
-      position: relative;
-      overflow: hidden;
-      vertical-align: baseline;
-      padding-right: 2px;
-      margin-right: 2px;
-      max-width: 100%;
-      white-space: normal;
-      min-height: 2.6em;
-    }
-
-    .swap-word {
-      display: inline-block;
-      will-change: transform, opacity, filter;
-      transform: translateX(0);
-      opacity: 1;
-      filter: blur(0px);
-      transition: transform 620ms cubic-bezier(0.2, 0.9, 0.2, 1), opacity 620ms ease, filter 620ms ease;
-    }
-
-    .swap-word.is-out {
-      transform: translateX(-105%);
-      opacity: 0;
-      filter: blur(1px);
-    }
-
-    .swap-word.is-in {
-      transform: translateX(105%);
-      opacity: 0;
-      filter: blur(1px);
-    }
-
-    .hero-swap {
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      background: linear-gradient(90deg, var(--ai-red), var(--ai-amber), var(--ai-mint), var(--ai-blue), var(--ai-indigo));
-      background-size: 300% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: intelligence-flow 14s ease infinite;
-    }
-
-    .hero-sub {
-      display: block;
-      font-size: 0.86em;
-      line-height: 1.08;
-      letter-spacing: -0.015em;
-    }
-
-    /* Keep AI Automation variant stable on desktop */
-    .hero-sub--tight {
-      max-width: 30ch;
-      white-space: nowrap;
-      font-size: 0.83em;
-      letter-spacing: -0.02em;
-    }
-
-    @media (max-width: 900px) {
-      .hero-sub--tight {
-        max-width: none;
-        white-space: normal;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .headline-wrap { min-height: 0; }
-      .swap-word { white-space: normal; }
-      #about-digital-by-default .section-title {
-        font-size: 28px;
-        letter-spacing: -0.015em;
-        white-space: nowrap;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero h1 { font-size: 34px; line-height: 1.06; }
-      .hero-os { font-size: 0.92em; white-space: nowrap; }
-      .hero-sub { font-size: 0.78em; line-height: 1.06; }
-    }
-
-    .nav-sub {
-      display: block;
-      font-size: 12px;
-      font-weight: 500;
-      color: rgba(255,255,255,0.65);
-      margin-top: 2px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .swap-word { transition: none; }
-    }
-
-    @media (min-width: 1100px) {
-      .hero-sub { font-size: 0.9em; }
-    }
-
-    /* Highlight + underline for the word "Autonomous" */
-    .autonomous-highlight {
-      display: inline;
-      color: rgba(255,255,255,0.95);
-      text-decoration: underline;
-      text-decoration-thickness: 3px;
-      text-underline-offset: 6px;
-    }
-
-    /* Contact tiles (cleaner, tighter layout) */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      align-items: start;
-    }
-
-    .contact-tile {
-      position: relative;
-      overflow: hidden;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.10);
-      box-shadow: 0 18px 60px rgba(0,0,0,0.30);
-    }
-
-    .contact-tile--hubspot {
-      background: rgba(255,255,255,0.92);
-      border-color: rgba(255,255,255,0.85);
-      box-shadow: 0 22px 70px rgba(0,0,0,0.35);
-    }
-
-    .contact-tile--hubspot .contact-title {
-      color: rgba(0,0,0,0.92);
-    }
-
-    .contact-tile--hubspot .contact-desc,
-    .contact-tile--hubspot .contact-meta,
-    .contact-tile--hubspot .contact-meta strong,
-    .contact-tile--hubspot .mini,
-    .contact-tile--hubspot p,
-    .contact-tile--hubspot a {
-      color: rgba(0,0,0,0.75) !important;
-    }
-
-    .contact-tile--hubspot .contact-meta a {
-      color: rgba(0,0,0,0.86) !important;
-    }
-
-    .contact-tile--hubspot::before {
-      background: radial-gradient(700px 300px at 20% 0%, rgba(244,196,48,0.28), transparent 62%);
-      opacity: 0.9;
-    }
-
-    .contact-tile::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(700px 300px at 20% 0%, rgba(84,160,255,0.18), transparent 60%);
-      pointer-events: none;
-    }
-
-    .contact-tile-inner {
-      position: relative;
-      padding: 28px;
-    }
-
-    .hubspot-shell {
-      margin-top: 16px;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
-      padding: 16px;
-    }
-
-    .hubspot-shell .mini {
-      margin-bottom: 10px;
-      font-size: 13px;
-      color: rgba(255,255,255,0.70);
-    }
-
-    .calendly-shell {
-      margin-top: 16px;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.03);
-    }
-
-    /* Best-effort: make embedded HubSpot form match site */
-    /* HubSpot form text should be dark inside the white tile */
-    .contact-tile--hubspot .hubspot-shell label,
-    .contact-tile--hubspot .hubspot-shell .hs-form-field label,
-    .contact-tile--hubspot .hubspot-shell .hs-form-field span,
-    .contact-tile--hubspot .hubspot-shell .hs-error-msgs label,
-    .contact-tile--hubspot .hubspot-shell .hs-error-msg,
-    .contact-tile--hubspot .hubspot-shell .inputs-list,
-    .contact-tile--hubspot .hubspot-shell .legal-consent-container,
-    .contact-tile--hubspot .hubspot-shell .hs-richtext,
-    .contact-tile--hubspot .hubspot-shell .hs-form-required {
-      color: rgba(0,0,0,0.82) !important;
-    }
-
-    .contact-tile--hubspot .hubspot-shell .hs-input::placeholder,
-    .contact-tile--hubspot .hubspot-shell input::placeholder,
-    .contact-tile--hubspot .hubspot-shell textarea::placeholder {
-      color: rgba(0,0,0,0.42) !important;
-    }
-
-    .hubspot-shell .hs-form-field {
-      margin-bottom: 12px !important;
-    }
-
-    .hubspot-shell .hs-input::placeholder,
-    .hubspot-shell input::placeholder,
-    .hubspot-shell textarea::placeholder {
-      color: rgba(255,255,255,0.55) !important;
-    }
-
-    .hubspot-shell input,
-    .hubspot-shell textarea,
-    .hubspot-shell select {
-      width: 100% !important;
-      border-radius: 14px !important;
-      border: 1px solid rgba(255,255,255,0.14) !important;
-      background: rgba(8,22,36,0.75) !important;
-      color: rgba(255,255,255,0.92) !important;
-      padding: 12px 12px !important;
-      outline: none !important;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
-    }
-
-    .hubspot-shell input:focus,
-    .hubspot-shell textarea:focus,
-    .hubspot-shell select:focus {
-      border-color: rgba(244,196,48,0.65) !important;
-      box-shadow: 0 0 0 4px rgba(244,196,48,0.15) !important;
-    }
-
-    .hubspot-shell .hs-button {
-      border-radius: 999px !important;
-      padding: 12px 18px !important;
-      font-weight: 800 !important;
-      border: 0 !important;
-      cursor: pointer !important;
-      background: linear-gradient(135deg, #FFD84D, #F4C430) !important;
-      color: #111 !important;
-      width: 100% !important;
-      box-shadow: 0 12px 32px rgba(244,196,48,0.35) !important;
-    }
-
-    .hubspot-shell .hs-button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 48px rgba(244,196,48,0.55) !important;
-    }
-
-    /* HubSpot skeleton loader */
-    .form-skeleton {
-      display: grid;
-      gap: 10px;
-      padding: 6px 2px 14px;
-    }
-
-    .sk-row,
-    .sk-btn {
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: linear-gradient(90deg,
-        rgba(255,255,255,0.05),
-        rgba(255,255,255,0.10),
-        rgba(255,255,255,0.05));
-      background-size: 220% 100%;
-      animation: shimmer 1.2s ease-in-out infinite;
-    }
-
-    .sk-h { height: 14px; width: 60%; border-radius: 10px; }
-    .sk-row { height: 44px; }
-    .sk-row:nth-child(2) { } /* First name */
-    .sk-row:nth-child(3) { } /* Last name */
-    .sk-row:nth-child(4) { } /* Email */
-    .sk-row:nth-child(5) { } /* Phone */
-    .sk-row:nth-child(6) { height: 88px; } /* Message textarea */
-    .sk-btn { height: 46px; border-radius: 999px; }
-
-    @keyframes shimmer {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
-
-    .hubspot-shell.is-loaded .form-skeleton { display: none; }
-
-    @media (max-width: 900px) {
-      .contact-grid { grid-template-columns: 1fr; }
-    }
-  
-
-    /* ROI Calculator Section */
-    .roi-section { margin-top: 40px; }
-    .roi-wrap { display:flex; justify-content:center; }
-    .roi-calculator {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      max-width: 640px;
-      width:100%;
-      padding: 32px;
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 18px;
-      color: #1f2937;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
-    }
-    .roi-calculator h2 { font-size: 24px; font-weight: 700; margin-bottom: 6px; color:#111827; }
-    .roi-calculator .subtitle { font-size:14px; color:#6b7280; margin-bottom:26px; }
-    .input-group { margin-bottom:26px; }
-    .input-group label { display:block; font-size:14px; font-weight:600; color:#374151; margin-bottom:8px; }
-    .slider-container { display:flex; align-items:center; gap:14px; }
-    .slider-container input[type="range"] { flex:1; height:6px; border-radius:3px; background:#e5e7eb; appearance:none; }
-    .slider-container input[type="range"]::-webkit-slider-thumb { appearance:none; width:20px; height:20px; border-radius:50%; background:#2563eb; border:2px solid #fff; box-shadow:0 1px 3px rgba(0,0,0,.25); cursor:pointer; }
-    .value-display { min-width:84px; padding:8px 12px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px; font-size:14px; font-weight:700; text-align:center; }
-    .divider { height:1px; background:#e5e7eb; margin:28px 0; }
-    .results-header { font-size:13px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:#6b7280; margin-bottom:18px; }
-    .results-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-    .result-card { padding:18px; background:#f9fafb; border-radius:12px; border:1px solid #e5e7eb; }
-    .result-card.highlight { background:linear-gradient(135deg,#eff6ff 0%,#f0fdf4 100%); border-color:#bfdbfe; }
-    .result-card .label { font-size:12px; color:#6b7280; }
-    .result-card .value { font-size:22px; font-weight:800; color:#111827; }
-    .result-card.highlight .value { color:#059669; }
-    .result-card .subtext { font-size:11px; color:#9ca3af; margin-top:4px; }
-    .summary { margin-top:22px; padding:14px; background:#fefce8; border:1px solid #fde047; border-radius:10px; font-size:14px; color:#713f12; }
-    @media (max-width:640px){ .results-grid{grid-template-columns:1fr;} .slider-container{flex-direction:column;align-items:stretch;} }
-  </style>
-
-  <script>
-    // === Paid Consult link (Calendly handles payment) ===
-    const PAID_CONSULT_URL = "https://calendly.com/hello-digitalbydefault/one-to-one-consult";
-    const FREE_AUDIT_FLAG_KEY = 'dbd_free_audit';
-
-    document.addEventListener('DOMContentLoaded', () => {
-      // Wire Paid Consult CTAs to the same Calendly URL
-      if (typeof PAID_CONSULT_URL === 'string' && PAID_CONSULT_URL && PAID_CONSULT_URL.includes('calendly.com')) {
-        document.querySelectorAll('a[href="https://calendly.com/hello-digitalbydefault/one-to-one-consult"]').forEach(a => {
-          a.setAttribute('href', PAID_CONSULT_URL);
-          a.setAttribute('target', '_blank');
-          a.setAttribute('rel', 'noopener noreferrer');
-        });
-      }
-
-      // Header scroll polish
-      const header = document.querySelector('.site-header');
-      const onScroll = () => {
-        if (!header) return;
-        if (window.scrollY > 12) header.classList.add('is-scrolled');
-        else header.classList.remove('is-scrolled');
-      };
-      onScroll();
-      window.addEventListener('scroll', onScroll, { passive: true });
-
-      // Smooth scroll for real in-page anchors (ignore href="#")
-      // Flag Free Audit clicks for HubSpot attribution
-      document.querySelectorAll('a[href="#contact"]').forEach(a => {
-        if (a.textContent && a.textContent.toLowerCase().includes('free audit')) {
-          a.addEventListener('click', () => {
-            try { localStorage.setItem(FREE_AUDIT_FLAG_KEY, '1'); } catch(e){}
-          });
-        }
-      });
-
-      document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', (e) => {
-          const id = a.getAttribute('href');
-          if (!id || id === '#') return; // prevents "'#' is not a valid selector"
-          const target = document.querySelector(id);
-          if (!target) return;
-          e.preventDefault();
-          const headerOffset = 84;
-          const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        });
-      });
-
-      // Mobile nav drawer
-      const mobileNav = document.getElementById('mobileNav');
-      const openBtn = document.getElementById('mobileNavOpen');
-      const closeBtn = document.getElementById('mobileNavClose');
-
-      const openMenu = (e) => {
-        if (e) e.preventDefault();
-        if (!mobileNav) return;
-        mobileNav.classList.add('is-open');
-        mobileNav.setAttribute('aria-hidden', 'false');
-        if (openBtn) openBtn.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
-        document.body.classList.add('nav-open');
-      };
-
-      const closeMenu = () => {
-        if (!mobileNav) return;
-        mobileNav.classList.remove('is-open');
-        mobileNav.setAttribute('aria-hidden', 'true');
-        if (openBtn) openBtn.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-        document.body.classList.remove('nav-open');
-      };
-
-      if (openBtn) openBtn.addEventListener('click', openMenu);
-      if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-
-      if (mobileNav) {
-        mobileNav.addEventListener('click', (e) => {
-          if (e.target === mobileNav) closeMenu();
-        });
-      }
-
-      document.querySelectorAll('.js-mobile-link').forEach(a => {
-        a.addEventListener('click', () => closeMenu());
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeMenu();
-      });
-
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 900) closeMenu();
-      });
-
-      // Mobile Products & Services accordion
-      const acc = document.getElementById('mobileProducts');
-      const accBtn = acc ? acc.querySelector('.mobile-acc-trigger') : null;
-      if (acc && accBtn) {
-        // default open
-        acc.classList.remove('is-collapsed');
-        accBtn.addEventListener('click', () => {
-          const collapsed = acc.classList.toggle('is-collapsed');
-          accBtn.setAttribute('aria-expanded', String(!collapsed));
-        });
-      }
-
-      // Products & Services deep-linking (open the right OS tile)
-      const openOsTile = (segment) => {
-        const map = {
-          'revenue-os': 'revenue-os',
-          'marketing-os': 'marketing-os',
-          'operations-os': 'operations-os',
-          'customer-service-os': 'customer-service-os'
-        };
-        const id = map[String(segment || '').trim()];
-        if (!id) return;
-        const el = document.getElementById(id);
-        if (!el) return;
-
-        document.querySelectorAll('#products-services details.os-acc').forEach(d => {
-          if (d !== el) d.removeAttribute('open');
-        });
-        el.setAttribute('open', '');
-
-        const section = document.getElementById('products-services');
-        if (!section) return;
-        const headerOffset = 84;
-        const y = section.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      };
-
-      document.querySelectorAll('.dropdown a[data-segment]').forEach(a => {
-        a.addEventListener('click', (e) => {
-          e.preventDefault();
-          openOsTile(a.getAttribute('data-segment'));
-        });
-      });
-
-      document.querySelectorAll('.mobile-acc-panel a[data-segment]').forEach(a => {
-        a.addEventListener('click', () => {
-          const seg = a.getAttribute('data-segment');
-          setTimeout(() => openOsTile(seg), 120);
-        });
-      });
-
-      try {
-        const params = new URLSearchParams(window.location.search);
-        const seg = params.get('os');
-        if (window.location.hash === '#products-services' && seg) {
-          setTimeout(() => openOsTile(seg), 250);
-        }
-      } catch (_) {}
-
-      // Sticky chat button (if present)
-      const stickyChat = document.getElementById('stickyChat');
-      const chatLauncher = document.getElementById('chatLauncher');
-      if (stickyChat) {
-        stickyChat.addEventListener('click', () => {
-          if (chatLauncher) chatLauncher.click();
-        });
-      }
-    });
-  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital by Default | AI Automation Agency — AI Workflow & Revenue Systems</title>
+<meta name="description" content="Digital by Default builds AI workflow systems that capture demand, book meetings, and drive revenue — automatically. London-based AI consultancy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a1628;--navy-light:#111d35;--navy-mid:#162544;
+  --teal:#06d6a0;--teal-dim:#05b88a;--teal-glow:rgba(6,214,160,.15);
+  --cyan:#00e5ff;--purple:#7c5cfc;
+  --white:#f0f4f8;--white-pure:#ffffff;--grey:#8892a4;--grey-light:#c5cdd8;
+  --text:#e2e8f0;--text-dim:#94a3b8;
+  --radius:12px;--radius-lg:20px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'Outfit',sans-serif;background:var(--navy);color:var(--text);line-height:1.7;overflow-x:hidden}
+a{color:var(--teal);text-decoration:none;transition:color .3s}
+a:hover{color:var(--cyan)}
+::selection{background:var(--teal);color:var(--navy)}
+
+/* ===== UTILITY ===== */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:120px 0}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section-label::before{content:'';width:24px;height:1px;background:var(--teal)}
+.section-title{font-size:clamp(2rem,4vw,3.2rem);font-weight:700;color:var(--white-pure);line-height:1.15;margin-bottom:20px}
+.section-subtitle{font-size:1.1rem;color:var(--text-dim);max-width:600px;line-height:1.8}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:50px;font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:600;border:none;cursor:pointer;transition:all .4s var(--ease)}
+.btn-primary{background:var(--teal);color:var(--navy);box-shadow:0 0 40px rgba(6,214,160,.2)}
+.btn-primary:hover{background:var(--cyan);color:var(--navy);transform:translateY(-2px);box-shadow:0 0 60px rgba(0,229,255,.3)}
+.btn-outline{background:transparent;color:var(--teal);border:1.5px solid rgba(6,214,160,.4)}
+.btn-outline:hover{border-color:var(--teal);background:var(--teal-glow);color:var(--white-pure)}
+.btn svg{width:18px;height:18px}
+.highlight{color:var(--teal)}
+.card{background:var(--navy-light);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius-lg);padding:36px;transition:all .5s var(--ease)}
+.card:hover{border-color:rgba(6,214,160,.2);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+
+/* ===== ANIMATED BACKGROUND ===== */
+.hero-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.hero-bg .orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.35;animation:float 20s ease-in-out infinite}
+.orb-1{width:600px;height:600px;background:radial-gradient(circle,rgba(6,214,160,.3),transparent);top:-10%;left:-10%;animation-delay:0s}
+.orb-2{width:500px;height:500px;background:radial-gradient(circle,rgba(124,92,252,.25),transparent);top:30%;right:-15%;animation-delay:-7s}
+.orb-3{width:400px;height:400px;background:radial-gradient(circle,rgba(0,229,255,.2),transparent);bottom:10%;left:20%;animation-delay:-14s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-40px) scale(1.05)}66%{transform:translate(-20px,30px) scale(.95)}}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 0;transition:all .4s}
+.nav.scrolled{background:rgba(10,22,40,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.05);padding:12px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo .infinity{width:36px;height:36px;position:relative}
+.nav-logo .infinity svg{width:100%;height:100%}
+.nav-logo span{font-size:1.05rem;font-weight:700;color:var(--white-pure);letter-spacing:-.02em}
+.nav-logo small{display:block;font-size:.65rem;font-weight:400;color:var(--teal);letter-spacing:.08em;text-transform:uppercase;margin-top:-2px}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{color:var(--grey-light);font-size:.88rem;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--teal)}
+.nav-cta{display:flex;gap:12px;align-items:center}
+.mobile-toggle{display:none;background:none;border:none;color:var(--white-pure);cursor:pointer;padding:8px}
+.mobile-toggle svg{width:24px;height:24px}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,22,40,.98);backdrop-filter:blur(30px);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1.3rem;color:var(--white-pure);font-weight:600}
+.mobile-close{position:absolute;top:24px;right:24px;background:none;border:none;color:var(--white-pure);cursor:pointer}
+.mobile-close svg{width:28px;height:28px}
+
+/* ===== HERO ===== */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:100px;z-index:1}
+.hero-content{max-width:720px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(6,214,160,.08);border:1px solid rgba(6,214,160,.2);border-radius:50px;padding:6px 16px 6px 8px;margin-bottom:28px;font-size:.8rem;color:var(--teal);font-weight:500}
+.hero-badge .dot{width:8px;height:8px;background:var(--teal);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.hero h1{font-size:clamp(2.8rem,5.5vw,4.5rem);font-weight:800;line-height:1.05;color:var(--white-pure);margin-bottom:24px;letter-spacing:-.03em}
+.hero h1 .gradient{background:linear-gradient(135deg,var(--teal),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.15rem;color:var(--text-dim);max-width:540px;margin-bottom:36px;line-height:1.8}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:48px;margin-top:64px;padding-top:40px;border-top:1px solid rgba(255,255,255,.06)}
+.hero-stat .num{font-size:2rem;font-weight:800;color:var(--teal);font-family:'JetBrains Mono',monospace}
+.hero-stat .label{font-size:.8rem;color:var(--grey);margin-top:4px}
+.hero-visual{position:absolute;right:-5%;top:50%;transform:translateY(-50%);width:500px;height:500px;opacity:.2;pointer-events:none}
+.hero-visual .ring{position:absolute;border:1px solid rgba(6,214,160,.3);border-radius:50%;animation:spin 30s linear infinite}
+.ring-1{width:300px;height:300px;top:100px;left:100px}
+.ring-2{width:420px;height:420px;top:40px;left:40px;animation-direction:reverse;animation-duration:45s}
+.ring-3{width:500px;height:500px;top:0;left:0;animation-duration:60s}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== PROCESS ===== */
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:48px;position:relative}
+.process-card{padding:40px 32px;border:1px solid rgba(255,255,255,.05);position:relative;transition:all .5s var(--ease)}
+.process-card:first-child{border-radius:var(--radius-lg) 0 0 var(--radius-lg)}
+.process-card:last-child{border-radius:0 var(--radius-lg) var(--radius-lg) 0}
+.process-card:hover{background:rgba(6,214,160,.04);border-color:rgba(6,214,160,.15)}
+.process-num{font-family:'JetBrains Mono',monospace;font-size:3rem;font-weight:700;color:rgba(6,214,160,.15);line-height:1;margin-bottom:16px}
+.process-card h3{font-size:1.2rem;font-weight:700;color:var(--white-pure);margin-bottom:14px}
+.process-card ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.process-card li{font-size:.88rem;color:var(--text-dim);padding-left:18px;position:relative;line-height:1.6}
+.process-card li::before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--teal);opacity:.5}
+
+/* ===== SERVICES ===== */
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:48px}
+.service-card{background:var(--navy-light);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius-lg);padding:40px;position:relative;overflow:hidden;transition:all .5s var(--ease)}
+.service-card:hover{border-color:rgba(6,214,160,.2);transform:translateY(-3px)}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--cyan));opacity:0;transition:opacity .5s}
+.service-card:hover::before{opacity:1}
+.service-icon{width:48px;height:48px;border-radius:12px;background:var(--teal-glow);display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:var(--teal)}
+.service-icon svg{width:24px;height:24px}
+.service-card h3{font-size:1.15rem;font-weight:700;color:var(--white-pure);margin-bottom:10px}
+.service-card p{font-size:.9rem;color:var(--text-dim);line-height:1.7}
+
+/* ===== VALUE PROPS ===== */
+.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
+.value-card{text-align:center;padding:40px 24px}
+.value-icon{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,rgba(6,214,160,.1),rgba(0,229,255,.1));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:var(--teal)}
+.value-icon svg{width:28px;height:28px}
+.value-card h3{font-size:1.1rem;font-weight:700;color:var(--white-pure);margin-bottom:10px}
+.value-card p{font-size:.88rem;color:var(--text-dim);line-height:1.7}
+
+/* ===== CASE STUDIES ===== */
+.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
+.case-card{background:var(--navy-light);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius-lg);overflow:hidden;transition:all .5s var(--ease)}
+.case-card:hover{border-color:rgba(6,214,160,.2);transform:translateY(-4px)}
+.case-top{padding:28px 28px 0;position:relative}
+.case-industry{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.case-card h3{font-size:1.05rem;font-weight:700;color:var(--white-pure);margin-bottom:12px;line-height:1.4}
+.case-card p{font-size:.85rem;color:var(--text-dim);line-height:1.7}
+.case-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:20px;border-top:1px solid rgba(255,255,255,.05)}
+.case-metric{padding:20px 28px;border-right:1px solid rgba(255,255,255,.05)}
+.case-metric:last-child{border-right:none}
+.case-metric .val{font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:700;color:var(--teal)}
+.case-metric .lab{font-size:.72rem;color:var(--grey);margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
+
+/* ===== QUOTE ===== */
+.quote-section{position:relative;text-align:center;padding:100px 0;z-index:1}
+.quote-section blockquote{font-size:clamp(1.3rem,2.5vw,1.8rem);font-weight:300;color:var(--white-pure);max-width:700px;margin:0 auto;line-height:1.6;font-style:italic}
+.quote-section cite{display:block;margin-top:20px;font-size:.9rem;color:var(--teal);font-style:normal;font-weight:500}
+.quote-line{width:60px;height:2px;background:linear-gradient(90deg,var(--teal),var(--cyan));margin:0 auto 20px;border-radius:2px}
+
+/* ===== CONSULT ===== */
+.consult-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.consult-features{display:flex;flex-direction:column;gap:16px;margin:28px 0 32px}
+.consult-feature{display:flex;align-items:flex-start;gap:14px;font-size:.95rem;color:var(--text-dim);line-height:1.6}
+.consult-feature svg{width:22px;height:22px;color:var(--teal);flex-shrink:0;margin-top:2px}
+.consult-card{background:linear-gradient(135deg,var(--navy-light),var(--navy-mid));border:1px solid rgba(6,214,160,.15);border-radius:var(--radius-lg);padding:48px;text-align:center}
+.consult-price{font-size:2.5rem;font-weight:800;color:var(--teal);font-family:'JetBrains Mono',monospace}
+.consult-price small{font-size:1rem;color:var(--grey);font-weight:400}
+.consult-note{font-size:.85rem;color:var(--text-dim);margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)}
+
+/* ===== ROI CALCULATOR ===== */
+.roi-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.roi-inputs{display:flex;flex-direction:column;gap:28px}
+.roi-group label{display:block;font-size:.85rem;font-weight:600;color:var(--grey-light);margin-bottom:10px}
+.roi-group .range-header{display:flex;justify-content:space-between;align-items:center}
+.roi-group .range-val{font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--teal);font-weight:600}
+input[type=range]{-webkit-appearance:none;width:100%;height:6px;border-radius:3px;background:var(--navy-mid);outline:none;margin-top:8px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--teal);cursor:pointer;box-shadow:0 0 20px rgba(6,214,160,.4)}
+.roi-results{background:var(--navy-light);border:1px solid rgba(6,214,160,.15);border-radius:var(--radius-lg);padding:40px}
+.roi-result{text-align:center;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.roi-result:last-child{border-bottom:none}
+.roi-result .val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--teal)}
+.roi-result .lab{font-size:.82rem;color:var(--grey);margin-top:4px}
+.roi-bottom{font-size:.88rem;color:var(--text-dim);margin-top:20px;padding:16px;background:rgba(6,214,160,.05);border-radius:var(--radius);line-height:1.6;text-align:center}
+
+/* ===== CTA BANNER ===== */
+.cta-banner{position:relative;z-index:1;text-align:center;padding:100px 0}
+.cta-banner h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;color:var(--white-pure);margin-bottom:16px}
+.cta-banner p{font-size:1.1rem;color:var(--text-dim);max-width:600px;margin:0 auto 36px;line-height:1.7}
+
+/* ===== CONTACT ===== */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px}
+.contact-form{display:flex;flex-direction:column;gap:20px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:.82rem;font-weight:600;color:var(--grey-light);text-transform:uppercase;letter-spacing:.05em}
+.form-group input,.form-group textarea,.form-group select{background:var(--navy-mid);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:14px 18px;color:var(--white-pure);font-family:'Outfit',sans-serif;font-size:.95rem;outline:none;transition:border-color .3s}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--teal)}
+.form-group textarea{min-height:120px;resize:vertical}
+.form-group select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238892a4' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.contact-calendly{background:var(--navy-light);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius-lg);padding:40px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:20px}
+.contact-calendly h3{font-size:1.3rem;font-weight:700;color:var(--white-pure)}
+.contact-calendly p{font-size:.9rem;color:var(--text-dim);line-height:1.6}
+
+/* ===== FOOTER ===== */
+.footer{border-top:1px solid rgba(255,255,255,.05);padding:60px 0 40px;position:relative;z-index:1}
+.footer-inner{display:flex;justify-content:space-between;align-items:start;gap:40px;flex-wrap:wrap}
+.footer-brand p{font-size:.85rem;color:var(--grey);margin-top:8px;max-width:280px;line-height:1.6}
+.footer-links{display:flex;gap:48px}
+.footer-col h4{font-size:.75rem;font-weight:600;color:var(--grey);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px}
+.footer-col a{display:block;font-size:.88rem;color:var(--text-dim);margin-bottom:8px;transition:color .3s}
+.footer-col a:hover{color:var(--teal)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.04);margin-top:40px;padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--grey)}
+
+/* ===== ANIMATIONS ===== */
+.fade-in{opacity:0;transform:translateY(30px);transition:all .8s var(--ease)}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.fade-in-delay{transition-delay:.2s}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .grid-2,.consult-inner,.roi-inner,.contact-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  .process-grid{grid-template-columns:1fr;gap:16px}
+  .process-card,.process-card:first-child,.process-card:last-child{border-radius:var(--radius-lg)}
+  .hero-visual{display:none}
+}
+@media(max-width:768px){
+  .section{padding:80px 0}
+  .nav-links,.nav-cta .btn-outline{display:none}
+  .mobile-toggle{display:block}
+  .hero h1{font-size:2.4rem}
+  .hero-stats{flex-direction:column;gap:24px}
+  .value-grid,.cases-grid,.grid-3{grid-template-columns:1fr}
+  .footer-inner{flex-direction:column}
+  .footer-links{flex-direction:column;gap:28px}
+  .footer-bottom{flex-direction:column;gap:8px;text-align:center}
+}
+</style>
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="header-left">
-        <div class="logo-lockup" aria-label="Digital by Default">
-          <div class="logo-text">Digital by Default</div>
-          <div class="logo-sub">
-            <span class="logo-powered">Powered by</span>
-            <span class="logo-intel"><span>Intelligence</span></span>
-          </div>
-        </div>
-        <nav class="nav" aria-label="Primary">
-          <a href="#paid-consult">Consulting</a>
-          <a href="#about-digital-by-default">About</a>
-          <a href="#roi-calculator">ROI Calculator</a>
-          <a href="#contact">Contact</a>
-        </nav>
+<!-- Background Orbs -->
+<div class="hero-bg">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="infinity">
+        <svg viewBox="0 0 40 24" fill="none">
+          <path d="M28.5 4C25.5 4 23.5 6 20 10C16.5 6 14.5 4 11.5 4C7.5 4 4 7.5 4 12C4 16.5 7.5 20 11.5 20C14.5 20 16.5 18 20 14C23.5 18 25.5 20 28.5 20C32.5 20 36 16.5 36 12C36 7.5 32.5 4 28.5 4Z" stroke="url(#inf-grad)" stroke-width="2.5" stroke-linecap="round"/>
+          <defs><linearGradient id="inf-grad" x1="4" y1="12" x2="36" y2="12"><stop stop-color="#06d6a0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs>
+        </svg>
       </div>
-      <div class="header-right">
-        <a class="btn btn-strategy btn-header" href="#contact">Book a Call</a>
-        <a class="btn btn-partner btn-header" href="https://calendly.com/hello-digitalbydefault/one-to-one-consult" target="_blank" rel="noopener noreferrer" title="Book a Paid Consult">Book a Paid Consult</a>
-        <button class="hamburger" id="mobileNavOpen" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
-          <span class="menu-text">Menu</span>
-        </button>
+      <div>
+        <span>Digital by Default</span>
+        <small>Powered by Intelligence</small>
       </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#case-studies">Results</a></li>
+      <li><a href="#paid-consult">Consulting</a></li>
+      <li><a href="#roi-calculator">ROI Calculator</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="https://calendly.com/hello-digitalbydefault/one-to-one-consult" class="btn btn-outline" style="padding:10px 22px;font-size:.85rem">Paid Consult</a>
+      <a href="#contact" class="btn btn-primary" style="padding:10px 22px;font-size:.85rem">Book a Call</a>
     </div>
-  </header>
+    <button class="mobile-toggle" onclick="document.getElementById('mobileMenu').classList.add('open')" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
 
-  <!-- Mobile nav drawer -->
-  <div class="mobile-nav-overlay" id="mobileNav" aria-hidden="true" role="dialog" aria-label="Menu">
-    <div class="mobile-drawer" role="document">
-      <div class="mobile-drawer-header">
-        <div class="logo-lockup" aria-label="Digital by Default">
-          <div class="logo-text">Digital by Default</div>
-          <div class="logo-sub">
-            <span class="logo-powered">Powered by</span>
-            <span class="logo-intel"><span>Intelligence</span></span>
-          </div>
-        </div>
-        <button class="mobile-close" id="mobileNavClose" aria-label="Close menu">×</button>
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="document.getElementById('mobileMenu').classList.remove('open')" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <a href="#services" onclick="document.getElementById('mobileMenu').classList.remove('open')">Services</a>
+  <a href="#process" onclick="document.getElementById('mobileMenu').classList.remove('open')">Process</a>
+  <a href="#case-studies" onclick="document.getElementById('mobileMenu').classList.remove('open')">Results</a>
+  <a href="#paid-consult" onclick="document.getElementById('mobileMenu').classList.remove('open')">Consulting</a>
+  <a href="#roi-calculator" onclick="document.getElementById('mobileMenu').classList.remove('open')">ROI Calculator</a>
+  <a href="#contact" class="btn btn-primary" onclick="document.getElementById('mobileMenu').classList.remove('open')">Book a Strategy Call</a>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge"><div class="dot"></div> London-based AI Automation Agency</div>
+      <h1><span class="gradient">AI Automation</span><br>scale without extra&nbsp;headcount.</h1>
+      <p>From pipeline to bookings — transform your business with AI workflow automation engineered for measurable results.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">
+          Book a Strategy Call
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#services" class="btn btn-outline">See What We Build</a>
       </div>
-
-      <div class="mobile-links">
-        
-
-        <div class="mobile-section-label">Company</div>
-        <a href="#about-digital-by-default" class="js-mobile-link">About Digital by Default</a>
-        <a href="#roi-calculator" class="js-mobile-link">ROI Calculator</a>
-        <a href="#paid-consult" class="js-mobile-link">Consulting</a>
-        <a href="#contact" class="js-mobile-link">Contact</a>
-        <a href="https://calendly.com/hello-digitalbydefault/one-to-one-consult" target="_blank" rel="noopener noreferrer" class="js-mobile-link">Book a Paid Consult</a>
-
-        <div class="mobile-section-label">Actions</div>
-        <div class="mobile-cta">
-          <a class="btn btn-strategy js-mobile-link" href="#contact">Book a Strategy Call</a>
-          <a class="btn btn-partner js-mobile-link" href="https://calendly.com/hello-digitalbydefault/one-to-one-consult" target="_blank" rel="noopener noreferrer">Book a Paid Consult</a>
-        </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">75%</div><div class="label">Average task automation</div></div>
+        <div class="hero-stat"><div class="num">24/7</div><div class="label">Always-on systems</div></div>
+        <div class="hero-stat"><div class="num">3x</div><div class="label">Faster response times</div></div>
       </div>
     </div>
   </div>
+  <div class="hero-visual"><div class="ring ring-1"></div><div class="ring ring-2"></div><div class="ring ring-3"></div></div>
+</section>
 
-  <div class="container hero">
-    <h1>
-      <span class="headline-wrap" aria-label="Offerings headline">
-        <span class="swap-word hero-swap" id="heroHeadline">
-          <strong class="hero-os">AI Automation</strong><br>
-          <span class="hero-sub hero-sub--tight">scale without extra headcount.</span>
-        </span>
-      </span>
-    </h1>
-
-    <p>
-      From pipeline to <span class="rotating-word" id="rotatingWord">bookings</span><span class="dash-tight">—</span>
-      Transform your business with AI workflow automation engineered for measurable results.
-    </p>
-
-    <div class="hero-powered">
-      <span class="pb-text">Powered by Digital by Default</span>
-      <span class="pb-intelligence">Intelligence</span>
+<!-- Services -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">What We Do</div>
+      <div class="section-title">AI systems that capture demand, book meetings, and drive revenue.</div>
+      <div class="section-subtitle">We build and implement operating systems across Sales, Marketing, Operations, and Customer Service — so your business runs with always-on speed and consistent quality.</div>
     </div>
-
-    <div class="hero-divider" aria-hidden="true"></div>
-
-    <div class="cta-group">
-      
-      <a class="btn btn-strategy" href="#contact">Book a Strategy Call</a>
-      <div class="cta-next" style="margin-top:14px; width:100%; max-width: 980px;">
-        <strong style="display:block; margin-bottom:12px; color: rgba(255,255,255,0.9); font-size:14px;">What happens next</strong>
-
-        <div class="cta-steps tile-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:18px;">
-          <div class="card" style="padding:18px;">
-            <h4 style="font-size:14px; font-weight:800; margin-bottom:10px; letter-spacing:-0.01em;">1) Discovery Call</h4>
-            <ul style="padding-left:18px; margin:0; color: rgba(255,255,255,0.78); font-size:13px;">
-              <li>We learn how your business actually works: goals, constraints, handoffs, and what a ‘win’ looks like.</li>
-              <li>We map your tech stack and where data lives: CRMs, inboxes, spreadsheets, internal tools.</li>
-              <li>We audit processes to find real bottlenecks and decide what should and shouldn’t be automated.</li>
-            </ul>
-          </div>
-
-          <div class="card" style="padding:18px;">
-            <h4 style="font-size:14px; font-weight:800; margin-bottom:10px; letter-spacing:-0.01em;">2) Design, Build &amp; Validate</h4>
-            <ul style="padding-left:18px; margin:0; color: rgba(255,255,255,0.78); font-size:13px;">
-              <li>We prioritize high-impact opportunities and decide where AI helps, and where it doesn’t.</li>
-              <li>We design and build custom workflows, test different approaches on real data, and explain our choices in plain language.</li>
-              <li>We run evaluations in a real-world environment before full rollout.</li>
-            </ul>
-          </div>
-
-          <div class="card" style="padding:18px;">
-            <h4 style="font-size:14px; font-weight:800; margin-bottom:10px; letter-spacing:-0.01em;">3) Launch, Monitor &amp; Optimise</h4>
-            <ul style="padding-left:18px; margin:0; color: rgba(255,255,255,0.78); font-size:13px;">
-              <li>We launch into production with clear success metrics and safeguards.</li>
-              <li>We monitor performance, collect feedback from your team and customers, and fix issues quickly.</li>
-              <li>We continuously refine prompts, logic, and models so the system improves as your business evolves.</li>
-            </ul>
-          </div>
+    <div class="services-grid fade-in fade-in-delay">
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         </div>
+        <h3>AI Chatbots & Virtual Agents</h3>
+        <p>Intelligent conversational agents that qualify leads, answer customer questions, and book meetings — 24/7 across web, WhatsApp, and social channels.</p>
       </div>
-    </div>
-
-    <div class="cta-note" style="margin-top:12px; color: rgba(255,255,255,0.72); font-size: 14px;">
-      <strong>For founders, CROs, and revenue leaders only.</strong> 30-minute working session · No sales pitch.
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>Workflow Automation</h3>
+        <p>End-to-end automation of repetitive business processes using n8n, Zapier, and Make — from lead capture to CRM updates, invoicing, and follow-ups.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+        </div>
+        <h3>AI-Powered Sales & Marketing</h3>
+        <p>Automated lead scoring, personalised outreach sequences, content generation, and SEO optimisation — turning your pipeline into a predictable revenue engine.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        </div>
+        <h3>AI Strategy & Implementation</h3>
+        <p>Full consulting from AI readiness assessment through to deployment. We identify where AI drives the most impact and build systems that scale with your business.</p>
+      </div>
     </div>
   </div>
+</section>
 
-  <section class="container" id="about-digital-by-default">
-    <h2 class="section-title">What we do</h2>
-
-    <div class="card" style="max-width: 980px;">
-      <p><strong>Digital by Default builds AI workflow systems that capture demand, book meetings, and drive revenue — automatically.</strong></p>
-
-      <p style="margin-top:12px;">We build and implement <strong>operating systems</strong> across Sales, Marketing, Operations, and Customer Service — so your business runs with always‑on speed, consistent quality, and systems that improve as you scale.</p>
-
-      <div class="method-quote" style="margin-top:18px; max-width: 860px;">
-        <p class="method-quote-text">“Organizations use Digital By Default to architect autonomous operating systems that drive efficiency at scale.”</p>
-        <p class="method-quote-author">Erhan Kennedy Timur — Founder</p>
+<!-- Value Props -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="value-grid fade-in">
+      <div class="value-card">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <h3>Move Faster Than Competitors</h3>
+        <p>Capture and qualify intent the moment it appears — not when someone is online. Speed wins revenue.</p>
       </div>
+      <div class="value-card">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3>Delight Customers 24/7</h3>
+        <p>Always-on engagement answers questions, routes requests, and removes friction — improving satisfaction and retention.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>Turn AI Into Measurable Outcomes</h3>
+        <p>Systems are measured, optimised, and scaled against bookings, conversion, and revenue. Less noise, more results.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="mobile-only mobile-summary" aria-label="About summary">
-        <p><strong>What this means in practice:</strong></p>
+<!-- Process -->
+<section class="section" id="process" style="background:var(--navy-light)">
+  <div class="container">
+    <div class="fade-in" style="text-align:center;margin-bottom:20px">
+      <div class="section-label" style="justify-content:center"><span></span>What Happens Next</div>
+      <div class="section-title">Three steps to autonomous operations.</div>
+      <p class="section-subtitle" style="margin:0 auto">For founders, CROs, and revenue leaders only. 30-minute working session. No sales pitch.</p>
+    </div>
+    <div class="process-grid fade-in fade-in-delay">
+      <div class="process-card">
+        <div class="process-num">01</div>
+        <h3>Discovery Call</h3>
         <ul>
-          <li><strong>Faster responses:</strong> capture and qualify intent the moment it appears.</li>
-          <li><strong>24/7 coverage:</strong> customers get answers and routing without waiting.</li>
-          <li><strong>Measurable lift:</strong> systems are optimised against bookings, conversion and revenue.</li>
+          <li>We learn how your business actually works: goals, constraints, handoffs, and what a 'win' looks like.</li>
+          <li>We map your tech stack and where data lives: CRMs, inboxes, spreadsheets, internal tools.</li>
+          <li>We audit processes to find real bottlenecks and decide what should and shouldn't be automated.</li>
         </ul>
       </div>
-
-      <div class="tile-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap:24px; margin-top:26px;">
-        <div class="card" style="padding:22px;">
-          <h3 style="font-size:18px; margin-bottom:8px;">Move faster than competitors</h3>
-          <p style="font-size:15px;">Capture and qualify intent the moment it appears — not when someone is online. Speed wins revenue.</p>
-        </div>
-        <div class="card" style="padding:22px;">
-          <h3 style="font-size:18px; margin-bottom:8px;">Delight customers 24/7</h3>
-          <p style="font-size:15px;">Always‑on engagement answers questions, routes requests, and removes friction — improving satisfaction and retention.</p>
-        </div>
-        <div class="card" style="padding:22px;">
-          <h3 style="font-size:18px; margin-bottom:8px;">Turn AI into measurable outcomes</h3>
-          <p style="font-size:15px;">Systems are measured, optimised, and scaled. Less noise, more results.</p>
-        </div>
-      </div>
-
-      <p style="margin-top:18px; color: rgba(255,255,255,0.78);">The question isn’t whether AI changes your market. It’s whether you’re ahead of it.</p>
-
-      <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
-        <a href="#contact" class="btn btn-strategy" style="min-width: 0;">Book a Strategy Call</a>
-      </div>
-    </div>
-  </section>
-
-  
-
-  
-
-  <section class="container" id="paid-consult" aria-label="Paid consult">
-    <h2 class="section-title">Paid Consult</h2>
-<div class="grid" style="grid-template-columns: 1fr;">
-      <div class="card" style="max-width: 980px;">
-        <h3>One-to-One Paid Consult</h3>
-        <p style="margin-top:10px; color: rgba(255,255,255,0.78);">This session is for you to ask questions, pressure‑test your plans, and get direct guidance across automation, AI workflow design, systems integration, and implementation strategy — with no obligation to proceed into a project.</p>
-
-        <ul style="margin-top:14px; padding-left:18px; color: rgba(255,255,255,0.78);">
-          <li><strong>60 minutes</strong> of focused advisory</li>
-          <li>Live Q&amp;A on your workflows and systems</li>
-          <li>Practical recommendations you can act on immediately</li>
-          <li>Clear options for what to build next (if you want us to support implementation)</li>
+      <div class="process-card">
+        <div class="process-num">02</div>
+        <h3>Design, Build & Validate</h3>
+        <ul>
+          <li>We prioritise high-impact opportunities and decide where AI helps, and where it doesn't.</li>
+          <li>We design and build custom workflows, test different approaches on real data, and explain our choices in plain language.</li>
+          <li>We run evaluations in a real-world environment before full rollout.</li>
         </ul>
-
-        <p style="margin-top:14px; color: rgba(255,255,255,0.78);">If you decide to work with Digital by Default on a project afterwards, we’ll <strong>deduct the consult fee</strong> from your implementation costs.</p>
-
-        <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
-          <a class="btn btn-strategy" href="https://calendly.com/hello-digitalbydefault/one-to-one-consult" target="_blank" rel="noopener noreferrer" style="min-width: 0;">Book a Paid Consult</a>
-          <a class="btn btn-partner btn-pill" href="#contact" style="min-width: 0;">Or start with a free strategy call</a>
-        </div>
-
-        <p style="margin-top:12px; color: rgba(255,255,255,0.68); font-size: 13px;">The consult is ideal if you want expert input before committing to any build. If implementation follows, we apply the session fee as credit.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-num">03</div>
+        <h3>Launch, Monitor & Optimise</h3>
+        <ul>
+          <li>We launch into production with clear success metrics and safeguards.</li>
+          <li>We monitor performance, collect feedback from your team and customers, and fix issues quickly.</li>
+          <li>We continuously refine prompts, logic, and models so the system improves as your business evolves.</li>
+        </ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ROI Calculator Section -->
-  <section class="container roi-section" id="roi-calculator">
-    <h2 class="section-title">Let’s Do the Maths</h2>
-    <div class="roi-wrap">
-      <div class="roi-calculator">
-        <h2>ROI Calculator</h2>
-        <p class="subtitle">See how much time and money workflow automation could save your team.</p>
-
-        <div class="input-group">
-          <label>How many people handle manual tasks?</label>
-          <div class="slider-container">
-            <input type="range" id="teamSize" min="1" max="50" value="10">
-            <div class="value-display"><span id="teamSizeValue">10</span> people</div>
-          </div>
+<!-- Case Studies (NEW) -->
+<section class="section" id="case-studies">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Results</div>
+      <div class="section-title">Real outcomes from AI-first operations.</div>
+      <p class="section-subtitle">How businesses have transformed their operations with Digital by Default.</p>
+    </div>
+    <div class="cases-grid fade-in fade-in-delay">
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-industry">Professional Services</div>
+          <h3>AI Lead Qualification & Booking System</h3>
+          <p>Deployed an AI chatbot that qualifies inbound leads, scores intent, and books discovery calls directly into the sales team's calendar — eliminating manual triage.</p>
         </div>
-
-        <div class="input-group">
-          <label>Hours per employee per week on manual tasks</label>
-          <div class="slider-container">
-            <input type="range" id="hoursPerWeek" min="1" max="45" value="2">
-            <div class="value-display"><span id="hoursPerWeekValue">2</span> hrs/wk</div>
-          </div>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="val">68%</div><div class="lab">Faster response</div></div>
+          <div class="case-metric"><div class="val">3.2x</div><div class="lab">More bookings</div></div>
         </div>
-
-        <div class="input-group">
-          <label>Average hourly cost (salary + overhead)</label>
-          <div class="slider-container">
-            <input type="range" id="hourlyRate" min="10" max="150" value="10">
-            <div class="value-display">£<span id="hourlyRateValue">10</span>/hr</div>
-          </div>
+      </div>
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-industry">E-Commerce</div>
+          <h3>Automated Customer Service & Order Tracking</h3>
+          <p>Built a 24/7 AI support agent handling order status, returns, and FAQs — integrated with Shopify and the existing helpdesk, escalating complex issues to humans.</p>
         </div>
-
-        <div class="divider"></div>
-        <div class="results-header">Your Potential Savings</div>
-
-        <div class="results-grid">
-          <div class="result-card">
-            <div class="label">Current Annual Cost</div>
-            <div class="value" id="annualCost">£0</div>
-            <div class="subtext">of manual work</div>
-          </div>
-          <div class="result-card highlight">
-            <div class="label">Projected Annual Savings</div>
-            <div class="value" id="annualSavings">£0</div>
-            <div class="subtext">with 75% automation</div>
-          </div>
-          <div class="result-card">
-            <div class="label">Hours Reclaimed</div>
-            <div class="value" id="hoursReclaimed">0</div>
-            <div class="subtext">hours per year</div>
-          </div>
-          <div class="result-card">
-            <div class="label">Time Back Per Week</div>
-            <div class="value" id="weeklyHoursSaved">0</div>
-            <div class="subtext">hours for strategic work</div>
-          </div>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="val">75%</div><div class="lab">Tickets resolved by AI</div></div>
+          <div class="case-metric"><div class="val">£40k</div><div class="lab">Annual savings</div></div>
         </div>
-
-        <div class="summary">
-          <strong>Bottom line:</strong> Your team could redirect <span id="summaryHours">0</span> hours annually toward revenue‑generating activities instead of repetitive manual tasks.
+      </div>
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-industry">B2B SaaS</div>
+          <h3>End-to-End Sales Pipeline Automation</h3>
+          <p>Automated the full pipeline from lead capture to CRM enrichment, personalised email sequences, and meeting scheduling — reducing manual work by 80%.</p>
+        </div>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="val">80%</div><div class="lab">Less manual work</div></div>
+          <div class="case-metric"><div class="val">2.5x</div><div class="lab">Pipeline velocity</div></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="container" id="contact">
-    <h2 class="section-title">The future of business is <span class="autonomous-highlight">Autonomous</span>.</h2>
-    <p style="margin-top:12px; max-width:760px; font-size:18px; color: rgba(255,255,255,0.82);">Autonomous systems don’t just move faster — they close gaps humans can’t. Always‑on execution, instant response, and workflows that turn intent into revenue without delay.</p>
-    <p style="margin-top:8px; margin-bottom:24px; max-width:760px; font-size:16px; color: rgba(255,255,255,0.72);">If you’re ready to replace manual effort with AI-driven technology solutions for the modern business, this is where it starts.</p>
+<!-- Quote -->
+<section class="quote-section">
+  <div class="container fade-in">
+    <div class="quote-line"></div>
+    <blockquote>"Organisations use Digital by Default to architect autonomous operating systems that drive efficiency at scale."</blockquote>
+    <cite>Erhan Kennedy Timur — Founder</cite>
+  </div>
+</section>
 
-    <div class="contact-grid">
-      <!-- Lead capture (Lightweight Form) -->
-      <div class="card contact-tile">
-        <div class="contact-tile-inner">
-          
-          <p class="contact-desc">Tell us a bit about your business and goals. We’ll review and come back with the highest‑leverage automation opportunities.</p>
-
-          <div style="margin-top:16px; border-radius:18px; border:1px solid rgba(255,255,255,0.10); background:rgba(255,255,255,0.03); padding:16px;">
-            <form action="https://formsubmit.co/hello@digitalbydefault.co.uk" method="POST" style="display:grid; gap:12px;">
-              <input type="hidden" name="_captcha" value="false">
-              <input type="hidden" name="_subject" value="New Digital by Default Enquiry">
-
-              <input required type="text" name="name" placeholder="First & Last Name" style="width:100%; border-radius:14px; border:1px solid rgba(255,255,255,0.14); background:rgba(8,22,36,0.75); color:#fff; padding:12px; font-family:Inter,system-ui;">
-              <input required type="email" name="email" placeholder="Email Address" style="width:100%; border-radius:14px; border:1px solid rgba(255,255,255,0.14); background:rgba(8,22,36,0.75); color:#fff; padding:12px; font-family:Inter,system-ui;">
-              <input type="tel" name="phone" placeholder="Phone Number" style="width:100%; border-radius:14px; border:1px solid rgba(255,255,255,0.14); background:rgba(8,22,36,0.75); color:#fff; padding:12px; font-family:Inter,system-ui;">
-              <textarea required name="message" rows="4" placeholder="What would you like to automate or improve?" style="width:100%; border-radius:14px; border:1px solid rgba(255,255,255,0.14); background:rgba(8,22,36,0.75); color:#fff; padding:12px; font-family:Inter,system-ui;"></textarea>
-
-              <button type="submit" class="btn btn-strategy" style="width:100%;">Send Enquiry</button>
-            </form>
+<!-- Paid Consult -->
+<section class="section" id="paid-consult" style="background:var(--navy-light)">
+  <div class="container">
+    <div class="consult-inner fade-in">
+      <div>
+        <div class="section-label">Paid Consult</div>
+        <div class="section-title">One-to-One Advisory Session</div>
+        <p class="section-subtitle">Ask questions, pressure-test your plans, and get direct guidance on automation, AI workflow design, systems integration, and implementation strategy — with no obligation to proceed.</p>
+        <div class="consult-features">
+          <div class="consult-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span><strong>60 minutes</strong> of focused advisory</span>
+          </div>
+          <div class="consult-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Live Q&A on your workflows and systems</span>
+          </div>
+          <div class="consult-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Practical recommendations you can act on immediately</span>
+          </div>
+          <div class="consult-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Clear options for what to build next</span>
           </div>
         </div>
+        <a href="https://calendly.com/hello-digitalbydefault/one-to-one-consult" class="btn btn-primary">Book a Paid Consult</a>
+        <span style="display:inline-block;margin-left:16px"><a href="#contact" style="font-size:.9rem">Or start with a free strategy call →</a></span>
       </div>
+      <div class="consult-card">
+        <div style="font-size:.8rem;color:var(--grey);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">One-to-One Session</div>
+        <div class="consult-price">£199 <small>/ 60 min</small></div>
+        <div style="font-size:.95rem;color:var(--text-dim);margin-top:16px">Expert AI automation advisory</div>
+        <div class="consult-note">If you decide to work with us on a project afterwards, we'll <strong style="color:var(--teal)">deduct the consult fee</strong> from your implementation costs.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <!-- Calendly strategy call -->
-      <div class="card contact-tile">
-        <div class="contact-tile-inner">
-          <div class="contact-kicker">Calendly</div>
-          <div class="contact-title">Book a Strategy Call</div>
-          <p class="contact-desc">Pick a time that suits you. We’ll identify the highest‑leverage operating system to ship first.</p>
-
-          <div class="calendly-shell" aria-label="Calendly embed">
-            <iframe
-              title="Schedule a Strategy Call"
-              src="https://calendly.com/hello-digitalbydefault/30min"
-              style="width: 100%; height: 560px; border: 0;"
-              loading="lazy"
-            ></iframe>
+<!-- ROI Calculator -->
+<section class="section" id="roi-calculator">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Let's Do The Maths</div>
+      <div class="section-title">ROI Calculator</div>
+      <p class="section-subtitle">See how much time and money workflow automation could save your team.</p>
+    </div>
+    <div class="roi-inner fade-in fade-in-delay" style="margin-top:48px">
+      <div class="roi-inputs">
+        <div class="roi-group">
+          <div class="range-header">
+            <label>How many people handle manual tasks?</label>
+            <span class="range-val" id="peopleVal">10</span>
           </div>
+          <input type="range" min="1" max="100" value="10" id="people" oninput="calcROI()">
+        </div>
+        <div class="roi-group">
+          <div class="range-header">
+            <label>Hours per employee per week on manual tasks</label>
+            <span class="range-val" id="hoursVal">5</span>
+          </div>
+          <input type="range" min="1" max="40" value="5" id="hours" oninput="calcROI()">
+        </div>
+        <div class="roi-group">
+          <div class="range-header">
+            <label>Average hourly cost (salary + overhead)</label>
+            <span class="range-val" id="costVal">£25</span>
+          </div>
+          <input type="range" min="10" max="150" value="25" id="cost" oninput="calcROI()">
+        </div>
+      </div>
+      <div class="roi-results">
+        <div style="text-align:center;margin-bottom:16px;font-size:.8rem;color:var(--teal);text-transform:uppercase;letter-spacing:.15em;font-weight:600">Your Potential Savings</div>
+        <div class="roi-result">
+          <div class="val" id="annualCost">£65,000</div>
+          <div class="lab">Current annual cost of manual work</div>
+        </div>
+        <div class="roi-result">
+          <div class="val" id="annualSaving">£48,750</div>
+          <div class="lab">Projected annual savings (75% automation)</div>
+        </div>
+        <div class="roi-result">
+          <div class="val" id="hoursReclaimed">1,950</div>
+          <div class="lab">Hours reclaimed per year</div>
+        </div>
+        <div class="roi-result">
+          <div class="val" id="weeklyHours">37.5</div>
+          <div class="lab">Hours back per week for strategic work</div>
+        </div>
+        <div class="roi-bottom" id="roiBottom">Your team could redirect <strong style="color:var(--teal)">1,950 hours</strong> annually toward revenue-generating activities instead of repetitive manual tasks.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-          <p style="margin-top:12px; color: rgba(255,255,255,0.72); font-size: 13px;">If the embed doesn’t load, email us with “Strategy Call” in the subject.</p>
+<!-- CTA Banner -->
+<section class="cta-banner">
+  <div class="container fade-in">
+    <h2>The future of business is <span class="highlight">Autonomous</span>.</h2>
+    <p>Autonomous systems don't just move faster — they close gaps humans can't. Always-on execution, instant response, and workflows that turn intent into revenue without delay.</p>
+    <a href="#contact" class="btn btn-primary" style="font-size:1.05rem;padding:16px 40px">Book a Strategy Call</a>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section" id="contact" style="background:var(--navy-light)">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Get Started</div>
+      <div class="section-title">Let's build your AI advantage.</div>
+      <p class="section-subtitle">Tell us about your business and goals. We'll come back with the highest-leverage automation opportunities.</p>
+    </div>
+    <div class="contact-grid fade-in fade-in-delay">
+      <form class="contact-form" onsubmit="event.preventDefault();alert('Thank you! We\'ll be in touch shortly.')">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="you@company.com" required>
+        </div>
+        <div class="form-group">
+          <label>Company</label>
+          <input type="text" placeholder="Company name">
+        </div>
+        <div class="form-group">
+          <label>What are you looking to automate?</label>
+          <select>
+            <option value="">Select an area...</option>
+            <option>Lead qualification & booking</option>
+            <option>Customer service & support</option>
+            <option>Sales pipeline automation</option>
+            <option>Marketing & content</option>
+            <option>Internal operations</option>
+            <option>Not sure — need guidance</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tell us more</label>
+          <textarea placeholder="Brief description of your business and goals..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="align-self:flex-start">Send Enquiry</button>
+      </form>
+      <div class="contact-calendly">
+        <div style="width:72px;height:72px;border-radius:50%;background:var(--teal-glow);display:flex;align-items:center;justify-content:center;margin-bottom:8px">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </div>
+        <h3>Book a Strategy Call</h3>
+        <p>Pick a time that suits you. We'll identify the highest-leverage operating system to ship first.</p>
+        <a href="https://calendly.com/hello-digitalbydefault/one-to-one-consult" class="btn btn-primary">Open Calendly</a>
+        <p style="font-size:.8rem;color:var(--grey);margin-top:8px">Or email <a href="mailto:hello@digitalbydefault.co.uk">hello@digitalbydefault.co.uk</a> with "Strategy Call" in the subject.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo" style="margin-bottom:4px">
+          <div class="infinity">
+            <svg viewBox="0 0 40 24" fill="none"><path d="M28.5 4C25.5 4 23.5 6 20 10C16.5 6 14.5 4 11.5 4C7.5 4 4 7.5 4 12C4 16.5 7.5 20 11.5 20C14.5 20 16.5 18 20 14C23.5 18 25.5 20 28.5 20C32.5 20 36 16.5 36 12C36 7.5 32.5 4 28.5 4Z" stroke="url(#inf-grad2)" stroke-width="2.5" stroke-linecap="round"/><defs><linearGradient id="inf-grad2" x1="4" y1="12" x2="36" y2="12"><stop stop-color="#06d6a0"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs></svg>
+          </div>
+          <span style="font-size:.95rem;font-weight:700;color:var(--white-pure)">Digital by Default</span>
+        </a>
+        <p>AI automation consultancy helping businesses scale through intelligent workflow systems.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#case-studies">Results</a>
+          <a href="#paid-consult">Consulting</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="#roi-calculator">ROI Calculator</a>
+          <a href="https://digitalbydefault.ai" target="_blank">AI Marketplace</a>
+          <a href="https://calendly.com/hello-digitalbydefault/one-to-one-consult" target="_blank">Book a Call</a>
         </div>
       </div>
     </div>
-  </section>
-
-  <footer>
-    <div style="display:flex; flex-direction:column; gap:14px; align-items:center;">
-      <div class="footer-powered" aria-label="Powered by Digital by Default Intelligence">
-        <span class="footer-powered-text">Powered by Digital by Default</span>
-        <span class="logo-intel footer-intel"><span>Intelligence</span></span>
-      </div>
-      <p style="font-size:13px; color: rgba(255,255,255,0.6); margin-top:-6px;">“AI doesn’t create advantage. Execution does.”</p>
-      <p style="font-size:14px; color: rgba(255,255,255,0.72);">
-        © Digital by Default ·
-        <a href="#paid-consult" style="color: rgba(255,255,255,0.75); text-decoration: none;">Consulting</a> ·
-        <a href="#about-digital-by-default" style="color: rgba(255,255,255,0.75); text-decoration: none;">About</a> ·
-        <a href="#contact" style="color: rgba(255,255,255,0.75); text-decoration: none;">Contact</a>
-      </p>
+    <div class="footer-bottom">
+      <span>© 2025 Digital by Default. All rights reserved.</span>
+      <span>"AI doesn't create advantage. Execution does."</span>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <script>
-    // Hero headline swipe rotation (stable frame + no layout shift)
-    document.addEventListener('DOMContentLoaded', () => {
-      const el = document.getElementById('heroHeadline');
-      if (!el) return;
+<script>
+// Nav scroll effect
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50);
+});
 
-      const phrases = [
-        '<strong class="hero-os">AI Automation</strong><br><span class="hero-sub hero-sub--tight">scale without extra headcount.</span>',
-        '<strong class="hero-os">Revenue OS</strong><br><span class="hero-sub">engineered for growth.</span>',
-        '<strong class="hero-os">Marketing OS</strong><br><span class="hero-sub">engineered for demand.</span>',
-        '<strong class="hero-os">Operations OS</strong><br><span class="hero-sub">engineered to scale faster.</span>',
-        '<strong class="hero-os">Customer Service OS</strong><br><span class="hero-sub">engineered for satisfaction.</span>'
-      ];
+// Scroll animations
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
+},{threshold:.15});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
 
-      let i = 0;
-      el.innerHTML = phrases[0];
-
-      const dur = 5200;
-      const transition = 680;
-
-      setInterval(() => {
-        const next = (i + 1) % phrases.length;
-        el.classList.add('is-out');
-
-        window.setTimeout(() => {
-          el.classList.remove('is-out');
-          el.classList.add('is-in');
-          el.innerHTML = phrases[next];
-
-          requestAnimationFrame(() => {
-            el.classList.remove('is-in');
-          });
-
-          i = next;
-        }, transition);
-      }, dur);
-    });
-
-    // ROI Calculator Logic (per‑employee model)
-    document.addEventListener('DOMContentLoaded', () => {
-      const AUTOMATION_EFFICIENCY = 0.75;
-      const WEEKS_PER_YEAR = 52;
-
-      const teamSizeSlider = document.getElementById('teamSize');
-      if (!teamSizeSlider) return;
-      const hoursPerWeekSlider = document.getElementById('hoursPerWeek');
-      const hourlyRateSlider = document.getElementById('hourlyRate');
-
-      const teamSizeValue = document.getElementById('teamSizeValue');
-      const hoursPerWeekValue = document.getElementById('hoursPerWeekValue');
-      const hourlyRateValue = document.getElementById('hourlyRateValue');
-
-      const annualCostEl = document.getElementById('annualCost');
-      const annualSavingsEl = document.getElementById('annualSavings');
-      const hoursReclaimedEl = document.getElementById('hoursReclaimed');
-      const weeklyHoursSavedEl = document.getElementById('weeklyHoursSaved');
-      const summaryHoursEl = document.getElementById('summaryHours');
-
-      const formatCurrency = v => '£' + Math.round(v).toLocaleString();
-      const formatNumber = v => Math.round(v).toLocaleString();
-
-      function calculate() {
-        const teamSize = parseInt(teamSizeSlider.value);
-        const hoursPerWeek = parseInt(hoursPerWeekSlider.value);
-        const hourlyRate = parseInt(hourlyRateSlider.value);
-
-        teamSizeValue.textContent = teamSize;
-        hoursPerWeekValue.textContent = hoursPerWeek;
-        hourlyRateValue.textContent = hourlyRate;
-
-        const totalWeeklyHours = teamSize * hoursPerWeek;
-        const annualCost = totalWeeklyHours * hourlyRate * WEEKS_PER_YEAR;
-        const annualSavings = annualCost * AUTOMATION_EFFICIENCY;
-        const hoursReclaimed = totalWeeklyHours * AUTOMATION_EFFICIENCY * WEEKS_PER_YEAR;
-        const weeklyHoursSaved = totalWeeklyHours * AUTOMATION_EFFICIENCY;
-
-        annualCostEl.textContent = formatCurrency(annualCost);
-        annualSavingsEl.textContent = formatCurrency(annualSavings);
-        hoursReclaimedEl.textContent = formatNumber(hoursReclaimed);
-        weeklyHoursSavedEl.textContent = formatNumber(weeklyHoursSaved);
-        summaryHoursEl.textContent = formatNumber(hoursReclaimed);
-      }
-
-      [teamSizeSlider, hoursPerWeekSlider, hourlyRateSlider].forEach(el => el.addEventListener('input', calculate));
-      calculate();
-    });
-
-    // Inline word rotation: bookings → meetings → revenue → winning ✨
-    document.addEventListener('DOMContentLoaded', () => {
-      const wordEl = document.getElementById('rotatingWord');
-      if (!wordEl) return;
-
-      const words = ['bookings', 'meetings', 'revenue', 'winning ✨'];
-      let idx = 0;
-
-      wordEl.textContent = words[0];
-
-      const cycleMs = 2400; // total cycle (matches rotateWord keyframes)
-      const swapAtMs = 1100; // swap near the middle of the fade-out/in
-
-      const tick = () => {
-        wordEl.style.setProperty('--rotDur', `${cycleMs}ms`);
-        wordEl.classList.add('is-animating');
-
-        window.setTimeout(() => {
-          idx = (idx + 1) % words.length;
-          wordEl.textContent = words[idx];
-        }, swapAtMs);
-
-        window.setTimeout(() => {
-          wordEl.classList.remove('is-animating');
-          void wordEl.offsetWidth;
-        }, cycleMs);
-      };
-
-      // Start after a short delay so first paint is stable
-      window.setTimeout(() => {
-        tick();
-        window.setInterval(tick, cycleMs + 200);
-      }, 600);
-    });
-  </script>
-  </body>
+// ROI Calculator
+function calcROI(){
+  const p=+document.getElementById('people').value;
+  const h=+document.getElementById('hours').value;
+  const c=+document.getElementById('cost').value;
+  document.getElementById('peopleVal').textContent=p;
+  document.getElementById('hoursVal').textContent=h;
+  document.getElementById('costVal').textContent='£'+c;
+  const annual=p*h*c*52;
+  const saving=Math.round(annual*.75);
+  const hrs=Math.round(p*h*52*.75);
+  const wk=Math.round(p*h*.75*10)/10;
+  document.getElementById('annualCost').textContent='£'+annual.toLocaleString();
+  document.getElementById('annualSaving').textContent='£'+saving.toLocaleString();
+  document.getElementById('hoursReclaimed').textContent=hrs.toLocaleString();
+  document.getElementById('weeklyHours').textContent=wk;
+  document.getElementById('roiBottom').innerHTML='Your team could redirect <strong style="color:var(--teal)">'+hrs.toLocaleString()+' hours</strong> annually toward revenue-generating activities instead of repetitive manual tasks.';
+}
+calcROI();
+</script>
+</body>
 </html>
